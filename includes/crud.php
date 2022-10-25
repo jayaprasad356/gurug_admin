@@ -5,7 +5,7 @@
  * @Package Database
  */
 
-define('DOMAIN_URL', 'http://gurug.greymatterworks.in/'); /*chnage to your domain here*/
+define('DOMAIN_URL', 'https://gurug.greymatterworks.in/'); /*chnage to your domain here*/
 define('ALLOW_MODIFICATION', 1);
 define('JWT_SECRET_KEY', 'Gurug@2022'); /*chnage to your secret key here replace_with_your_strong_jwt_secret_key*/
 
