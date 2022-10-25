@@ -5,7 +5,7 @@
  * @Package Database
  */
 
-define('DOMAIN_URL', 'http://192.168.43.38/gurug/'); /*chnage to your domain here*/
+define('DOMAIN_URL', 'http://gurug.greymatterworks.in/'); /*chnage to your domain here*/
 define('ALLOW_MODIFICATION', 1);
 define('JWT_SECRET_KEY', 'Gurug@2022'); /*chnage to your secret key here replace_with_your_strong_jwt_secret_key*/
 
@@ -18,13 +18,16 @@ class Database
      * Database class
      */
 
-    private $db_host = "localhost";  // Change as required
-    private $db_user = "root";  // Change as required
-    private $db_pass = "";  // Change as required
-    private $db_name = "gurug";
-    /*
-     * Extra variables that are required by other function such as boolean con variable
-     */
+    // private $db_host = "localhost";
+    // private $db_user = "root"; 
+    // private $db_pass = "";
+    // private $db_name = "gurug";
+
+    private $db_host = "localhost";
+    private $db_user = "u743445510_gurug"; 
+    private $db_pass = "Gurug@2022";
+    private $db_name = "u743445510_gurug";
+
     private $con = false; // Check to see if the connection is active
     private $myconn = ""; // This will be our mysqli object
     private $result = array(); // Any results from a query will be stored here
