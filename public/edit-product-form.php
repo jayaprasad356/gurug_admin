@@ -592,6 +592,8 @@ function isJSON($string)
                 <!-- form start -->
                 <form id='edit_product_form' method="post" enctype="multipart/form-data">
                 <input type="hidden" class="form-control" name="indicator" value="1" >
+                <input type="hidden" name="type" id="packate" value="packet">
+                <input type="hidden" name="shipping_type" id="shipping_type" value="local">
                     <?php
                     $db->select('unit', '*');
                     $unit_data = $db->getResult();
@@ -635,18 +637,17 @@ function isJSON($string)
                                 </select><br>
                             </div>
                         </div>
-                        <label for="type">Type</label><?= isset($error['type']) ? $error['type'] : ''; ?>
+                        <!-- <label for="type">Type</label><?= isset($error['type']) ? $error['type'] : ''; ?>
                         <div class="form-group">
                             <label class="radio-inline"><input type="radio" name="type" id="packate" value="packet" <?= ($res[0]['type'] == "packet") ? "checked" : ""; ?>>Packet</label>
                             <label class="radio-inline"><input type="radio" name="type" id="loose" value="loose" <?= ($res[0]['type'] == "loose") ? "checked" : ""; ?>>Loose</label>
-                        </div>
+                        </div> -->
                         <hr>
                         <div id="variations">
                             <h5>Product Variations
 
 
                             </h5>
-                            <hr>
                             <?php
                             if (isJSON($data['price'])) {
                                 $price = json_decode($data['price'], 1);
@@ -1133,7 +1134,7 @@ function isJSON($string)
                                     </div>
                                     <hr>
 
-                                    <div class="row offset-col-2">
+                                    <!-- <div class="row offset-col-2">
                                         <div class="col-md-4">
                                             <label for="">Select Shipping Type :</label><i class="text-danger asterik">*</i>
                                         </div>
@@ -1148,7 +1149,7 @@ function isJSON($string)
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row local">
                                         <div class="">
                                             <div class="col-md-4">

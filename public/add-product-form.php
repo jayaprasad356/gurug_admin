@@ -368,6 +368,8 @@ if (isset($_POST['btnAdd'])) {
                 <!-- form start -->
                 <form id='add_product_form' method="post" enctype="multipart/form-data">
                     <input type="hidden" class="form-control" name="indicator" value="1" >
+                    <input type="hidden" name="type" id="packate" value="packet">
+                    <input type="hidden" name="shipping_type" id="shipping_type" value="local">
                     <?php
                     $sql = "SELECT * FROM unit";
                     $db->sql($sql);
@@ -408,11 +410,11 @@ if (isset($_POST['btnAdd'])) {
                                 </select>
                             </div>
                         </div>
-                        <label for="type"><br>Type</label><?= isset($error['type']) ? $error['type'] : ''; ?>
+                        <!-- <label for="type"><br>Type</label><?= isset($error['type']) ? $error['type'] : ''; ?>
                         <div class="form-group">
-                            <label class="radio-inline"><input type="radio" name="type" id="packate" value="packet" checked>Packet</label>
+                            <label class="radio-inline">Packet</label>
                             <label class="radio-inline"><input type="radio" name="type" id="loose" value="loose">Loose</label>
-                        </div>
+                        </div> -->
                         <hr>
                         <div id="packate_div" style="display:none">
                             <div class="row">
@@ -613,7 +615,7 @@ if (isset($_POST['btnAdd'])) {
                         <hr>
 
 
-                        <div class="row offset-col-2">
+                        <!-- <div class="row offset-col-2">
                             <div class="col-md-4">
                                 <label for="">Select Shipping Type :</label><i class="text-danger asterik">*</i>
                             </div>
@@ -628,7 +630,7 @@ if (isset($_POST['btnAdd'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
 
@@ -1104,12 +1106,10 @@ if (isset($_POST['btnAdd'])) {
 
     });
 
-    if ($('#packate').prop('checked')) {
-        $('#packate_div').show();
-        $('#packate_server_hide').hide();
-        $('.loose_div').children(":input").prop('disabled', true);
-        $('#loose_stock_div').children(":input").prop('disabled', true);
-    }
+    $('#packate_div').show();
+    $('#packate_server_hide').hide();
+    $('.loose_div').children(":input").prop('disabled', true);
+    $('#loose_stock_div').children(":input").prop('disabled', true);
 
     $.validator.addMethod('lessThanEqual', function(value, element, param) {
         return this.optional(element) || parseInt(value) < parseInt($(param).val());
