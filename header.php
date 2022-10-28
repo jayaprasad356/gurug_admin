@@ -249,11 +249,11 @@ $res_logo = $db->getResult();
                     <ul class="treeview-menu">
                         <li><a href="add-product.php"><i class="fa fa-plus"></i> Add Product</a></li>
                         <li><a href="products.php"><i class="fa fa-sliders"></i> Manage Products</a></li>
-                        <li><a href="media.php"><i class="fa fa-file-image-o"></i> Media</a></li>
-                        <li><a href="bulk-upload.php"><i class="fa fa-upload"></i> Bulk Upload</a></li>
+                        <!-- <li><a href="media.php"><i class="fa fa-file-image-o"></i> Media</a></li>
+                        <li><a href="bulk-upload.php"><i class="fa fa-upload"></i> Bulk Upload</a></li> -->
                         <!-- <li><a href="bulk-update.php"><i class="fa fa-pencil"></i> Bulk Update</a></li> -->
                         <li><a href="products-taxes.php"><i class="fa fa-plus"></i> Taxes</a></li>
-                        <li><a href="products-order.php"><i class="fa fa-reorder"></i> Products Order</a></li>
+                        <!-- <li><a href="products-order.php"><i class="fa fa-reorder"></i> Products Order</a></li> -->
                     </ul>
                 </li>
                 <li class="treeview">
@@ -366,7 +366,7 @@ $res_logo = $db->getResult();
                     <a href="notification.php"> <i class="fa fa-share-square-o"></i><span>Send notification</span>
                     </a>
                 </li>
-                <li class="treeview">
+                <!-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-wrench"></i>
                         <span>Web Front-End Settings</span>
@@ -383,7 +383,7 @@ $res_logo = $db->getResult();
                         </li>
                         <li class="treeview"><a href="front-end-policies.php"><i class="fa fa-money"></i><span>Policies</span></a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-wrench"></i>
@@ -402,9 +402,9 @@ $res_logo = $db->getResult();
                         <li><a href="delivery-boy-privacy-policy.php"><i class="fa fa-exclamation-triangle"></i> Delivery Boy Privacy Policy </a></li>
                         <li><a href="manager-app-privacy-policy.php"><i class="fa fa-lock"></i> Manager App Privacy Policy </a></li>
                         <li><a href="seller-privacy-policy.php"><i class="fa fa-lock"></i> Seller Privacy Policy </a></li>
-                        <li><a href="api-key.php"><i class="fa fa-lock"></i> Secret Key </a></li>
+                        <!-- <li><a href="api-key.php"><i class="fa fa-lock"></i> Secret Key </a></li> -->
                         <li><a href="about-us.php"><i class="fa fa-info"></i> About Us </a></li>
-                        <li><a href="purchase-code.php"><i class="fa fa-check"></i> System Registration </a></li>
+                        <!-- <li><a href="purchase-code.php"><i class="fa fa-check"></i> System Registration </a></li> -->
 
                     </ul>
                 </li>
