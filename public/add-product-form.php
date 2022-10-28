@@ -38,19 +38,35 @@ if (isset($_POST['btnAdd'])) {
             $standard_shipping = 1;
             $pickup_location = (isset($_POST['pickup_location']) && !empty($_POST['pickup_location'])) ? $db->escapeString($fn->xss_clean($_POST['pickup_location'])) : 0;
         } else {
-            if ($pincode_type == "all") {
-                $pincode_ids = NULL;
-            } else {
+            $error = array();
+            $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";   
                 $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
-                if ($pincode_type == "all") {
+            $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";   
+                $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
+            $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";   
+                $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
+            $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";   
+            if($pincode_type == "all"){
+                $pincode_ids = NULL; 
                     $pincode_ids = NULL;
-                } else {
-                    if (empty($_POST['pincode_ids_exc'])) {
-                        $error['pincode_ids_exc'] = "<label class='label label-danger'>Select pincodes!.</label>";
-                    } else {
-                        $pincode_ids = $fn->xss_clean_array($_POST['pincode_ids_exc']);
+                $pincode_ids = NULL; 
+                    $pincode_ids = NULL;
+                $pincode_ids = NULL; 
+                    $pincode_ids = NULL;
+                $pincode_ids = NULL; 
+            }else{
+               
+                if(empty($_POST['pincode_ids_exc'])){
+                    $error['pincode_ids_exc'] = "<label class='label label-danger'>Select pincodes!.</label>";
+                }else{
+                    $pincode_ids = $fn->xss_clean_array($_POST['pincode_ids_exc']);
+                    $pincode_ids = implode(",", $pincode_ids);   
                         $pincode_ids = implode(",", $pincode_ids);
-                    }
+                    $pincode_ids = implode(",", $pincode_ids);   
+                        $pincode_ids = implode(",", $pincode_ids);
+                    $pincode_ids = implode(",", $pincode_ids);   
+                        $pincode_ids = implode(",", $pincode_ids);
+                    $pincode_ids = implode(",", $pincode_ids);   
                 }
             }
         }
@@ -351,6 +367,7 @@ if (isset($_POST['btnAdd'])) {
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form id='add_product_form' method="post" enctype="multipart/form-data">
+                    <input type="hidden" class="form-control" name="indicator" value="1" >
                     <?php
                     $sql = "SELECT * FROM unit";
                     $db->sql($sql);
@@ -577,14 +594,14 @@ if (isset($_POST['btnAdd'])) {
                                 <option value="">--Select Sub Category--</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="">Product Type :</label>
                             <select name="indicator" id="indicator" class="form-control">
                                 <option value="0">--Select Type--</option>
                                 <option value="1">Veg</option>
                                 <option value="2">Non Veg</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="">Manufacturer :</label>
                             <input type="text" name="manufacturer" class="form-control">
@@ -842,7 +859,7 @@ if (isset($_POST['btnAdd'])) {
         $('.local').show();
     }
 
-    var pincode_type = $('#product_pincodes').find(":selected").val();
+    // var pincode_type = $('#product_pincodes').find(":selected").val();
 
     function searchable_zipcodes() {
         var search_zipcodes = $(".search_zipcode").select2({
@@ -1190,6 +1207,10 @@ if (isset($_POST['btnAdd'])) {
             image: "",
             category_id: "",
             stock: "",
+            length: 0,
+            breadth: 0,
+            height: 0,
+            weight: 0,
             discounted_price: {
                 lessThanEqual: "#price"
             },

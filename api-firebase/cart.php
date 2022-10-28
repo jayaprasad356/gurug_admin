@@ -511,6 +511,7 @@ if ((isset($_POST['get_user_cart'])) && ($_POST['get_user_cart'] == 1)) {
                 }
             } else {
                 $total_amount = 0;
+                $save_price = 0;
                 $sql = "SELECT count(cart.id) as total from cart left join products p on cart.product_id=p.id where p.standard_shipping=0 and cart.save_for_later = 0 AND user_id=" . $user_id;
                 $db->sql($sql);
                 $total = $db->getResult();
@@ -574,8 +575,8 @@ if ((isset($_POST['get_user_cart'])) && ($_POST['get_user_cart'] == 1)) {
 
                         $res[$i]['item'][$k]['other_images'] = json_decode($res[$i]['item'][$k]['other_images']);
                         $res[$i]['item'][$k]['other_images'] = empty($res[$i]['item'][$k]['other_images']) ? array() : $res[$i]['item'][$k]['other_images'];
-                        $result[$x]['item'][$z]['tax_percentage'] = (empty($result[$x]['item'][$z]['tax_percentage']) or is_null($result[$x]['item'][$z]['tax_percentage'])) ? "0" :  $result[$x]['item'][$z]['tax_percentage'];
-                        // $res[$i]['item'][$k]['is_cod_allowed'] = empty($res[$i]['item'][$k]['is_cod_allowed']) ? "0" : $res[$i]['item'][$k]['is_cod_allowed'];
+                        //$result[$x]['item'][$z]['tax_percentage'] = (empty($result[$x]['item'][$z]['tax_percentage']) or is_null($result[$x]['item'][$z]['tax_percentage'])) ? "0" :  $result[$x]['item'][$z]['tax_percentage'];
+                        $res[$i]['item'][$k]['is_cod_allowed'] = empty($res[$i]['item'][$k]['is_cod_allowed']) ? "0" : $res[$i]['item'][$k]['is_cod_allowed'];
                         $res[$i]['item'][$k]['tax_title'] = empty($res[$i]['item'][$k]['tax_title']) ? "" : $res[$i]['item'][$k]['tax_title'];
                         if ($res[$i]['item'][$k]['stock'] <= 0 || $res[$i]['item'][$k]['serve_for'] == 'Sold Out') {
                             $res[$i]['item'][$k]['isAvailable'] = false;

@@ -94,7 +94,7 @@ if (isset($_POST['btnEdit'])) {
                 }
                 break;
             }
-            for ($i = 0; $i < count($_POST['lenght']); $i++) {
+            for ($i = 0; $i < count($_POST['length']); $i++) {
                 if ($_POST['length'][$i] == 0) {
                     $error['length'] = "<label class='alert alert-danger'>length should me greater then 0.</label>";
                 }
@@ -591,12 +591,13 @@ function isJSON($string)
                 </div>
                 <!-- form start -->
                 <form id='edit_product_form' method="post" enctype="multipart/form-data">
+                <input type="hidden" class="form-control" name="indicator" value="1" >
                     <?php
                     $db->select('unit', '*');
                     $unit_data = $db->getResult();
                     $k = 0;
 
-                    print_r($errors);
+                    //print_r($errors);
                     ?>
                     <div class="box-body">
                         <div class="form-group">
@@ -1110,7 +1111,7 @@ function isJSON($string)
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="">Product Type :</label>
                                         <select name="indicator" id="indicator" class="form-control">
                                             <option value="">--Select Type--</option>
@@ -1121,7 +1122,7 @@ function isJSON($string)
                                                                     echo 'selected';
                                                                 } ?>>Non Veg</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="">Manufacturer :</label>
                                         <input type="text" name="manufacturer" value="<?= $res[0]['manufacturer'] ?>" class="form-control">

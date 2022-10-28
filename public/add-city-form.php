@@ -18,7 +18,8 @@ if (isset($_POST['btnAdd'])) {
         if (empty($city_name)) {
             $error['city_name'] = " <span class='label label-danger'>Required!</span>";
         }
-        $check = $fn->get_data(['name'], 'name=' . $city_name, 'cities');
+        $check = $fn->get_data('', 'name = "' . $city_name . '"', 'cities');
+     
         if (!empty($check)) {
             $error['add_city'] = '<label class="alert alert-danger">City Alreay exist</label>';
         } else {
