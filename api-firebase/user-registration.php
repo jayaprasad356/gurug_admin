@@ -312,11 +312,12 @@ if ((isset($_POST['type'])) && ($_POST['type'] == 'register')) {
     $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
     $password = md5($db->escapeString($fn->xss_clean($_POST['password'])));
     $fcm_id = (isset($_POST['fcm_id'])) ? $db->escapeString($fn->xss_clean($_POST['fcm_id'])) : "";
+    $email = (isset($_POST['email'])) ? $db->escapeString($fn->xss_clean($_POST['email'])) : "";
     $country_code = (isset($_POST['country_code'])) ? $db->escapeString($fn->xss_clean($_POST['country_code'])) : "91";
     $status     = 1;
     $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     $referral_code  = "";
-    if (!empty($name) && !empty($email) && !empty($mobile) && !empty($password)) {
+    if (!empty($name) && !empty($mobile) && !empty($password)) {
         for ($i = 0; $i < 10; $i++) {
             $referral_code .= $chars[mt_rand(0, strlen($chars) - 1)];
         }
