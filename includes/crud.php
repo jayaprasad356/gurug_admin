@@ -5,7 +5,7 @@
  * @Package Database
  */
 
-define('DOMAIN_URL', 'https://gurug.greymatterworks.in/'); /*chnage to your domain here*/
+define('DOMAIN_URL', 'https://admin.ggurug.com/'); /*chnage to your domain here*/
 define('ALLOW_MODIFICATION', 1);
 define('JWT_SECRET_KEY', 'Gurug@2022'); /*chnage to your secret key here replace_with_your_strong_jwt_secret_key*/
 
@@ -24,9 +24,9 @@ class Database
     // private $db_name = "gurug";
 
     private $db_host = "localhost";
-    private $db_user = "u743445510_gurug"; 
-    private $db_pass = "Gurug@2022";
-    private $db_name = "u743445510_gurug";
+    private $db_user = "u424887645_ggurug"; 
+    private $db_pass = "Ggurug@2022";
+    private $db_name = "u424887645_ggurug";
 
     private $con = false; // Check to see if the connection is active
     private $myconn = ""; // This will be our mysqli object
