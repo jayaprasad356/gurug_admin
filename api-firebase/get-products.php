@@ -55,17 +55,17 @@ APIs for Multi Vendor
 -------------------------------------------
 */
 
-if (!verify_token()) {
-    return false;
-}
+// if (!verify_token()) {
+//     return false;
+// }
 
 
-if (!isset($_POST['accesskey'])  || trim($_POST['accesskey']) != $access_key) {
-    $response['error'] = true;
-    $response['message'] = "No Accsess key found!";
-    print_r(json_encode($response));
-    return false;
-}
+// if (!isset($_POST['accesskey'])  || trim($_POST['accesskey']) != $access_key) {
+//     $response['error'] = true;
+//     $response['message'] = "No Accsess key found!";
+//     print_r(json_encode($response));
+//     return false;
+// }
 
 if (isset($_POST['get_all_products']) && $_POST['get_all_products'] == 1) {
     /* 
@@ -225,9 +225,9 @@ if (isset($_POST['get_all_products']) && $_POST['get_all_products'] == 1) {
     if ($shipping_type == "standard") {
         $sql = "SELECT p.*,p.type as d_type, s.store_name as seller_name,s.slug as seller_slug,s.status as seller_status,(SELECT " . $price . " FROM product_variant pv WHERE pv.product_id=p.id) as price FROM `products` p JOIN `seller` s ON s.id=p.seller_id LEFT JOIN `category` c ON c.id=p.category_id WHERE p.is_approved = 1 AND p.standard_shipping=1 AND p.status = 1 AND s.status = 1 AND c.status = 1 AND (s.categories like CONCAT('%', p.category_id ,'%')) $where ORDER BY $sort $order LIMIT $offset,$limit ";
     } else {
-        $sql = "SELECT p.*,p.type as d_type, s.store_name as seller_name,s.slug as seller_slug,s.status as seller_status,(SELECT " . $price . " FROM product_variant pv WHERE pv.product_id=p.id) as price FROM `products` p JOIN `seller` s ON s.id=p.seller_id LEFT JOIN `category` c ON c.id=p.category_id WHERE p.is_approved = 1 AND p.standard_shipping=0 AND p.status = 1 AND s.status = 1 AND c.status = 1 AND (s.categories like CONCAT('%', p.category_id ,'%')) $where ORDER BY $sort $order LIMIT $offset,$limit ";
+        $sql = "SELECT p.*,p.type as d_type, s.store_name as seller_name,s.slug as seller_slug,s.status as seller_status,(SELECT " . $price . " FROM product_variant pv WHERE pv.product_id=p.id) as price FROM `products` p JOIN `seller` s ON s.id=p.seller_id LEFT JOIN `category` c ON c.id=p.category_id WHERE p.is_approved = 1 AND p.standard_shipping=0 AND p.status = 1 AND s.status = 1 AND c.status = 1  $where ORDER BY $sort $order LIMIT $offset,$limit ";
     }
-    // echo $sql;
+    //echo $sql;
     $db->sql($sql);
     $res = $db->getResult();
 
@@ -358,6 +358,7 @@ if (isset($_POST['get_all_products']) && $_POST['get_all_products'] == 1) {
     } else {
         $response['error'] = true;
         $response['message'] = "No products available.";
+        $response['dbres'] = $product;
     }
     print_r(json_encode($response));
     return false;
