@@ -86,7 +86,7 @@ $low_stock_limit = isset($config['low-stock-limit']) && (!empty($config['low-sto
                         <a href="customers.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-xs-6 standard_shipping">
+                <!-- <div class="col-lg-3 col-xs-6 standard_shipping">
                     <div class="small-box bg-green">
                         <div class="inner">
                             <h3><?= $function->rows_count('seller', "id"); ?></h3>
@@ -95,7 +95,7 @@ $low_stock_limit = isset($config['low-stock-limit']) && (!empty($config['low-sto
                         <div class="icon"><i class="fa fa-users"></i></div>
                         <a href="sellers.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div> -->
 
 
                 <div class="col-lg-4 col-xs-6 standard_shipping shiprocket d-none">
@@ -247,7 +247,7 @@ $low_stock_limit = isset($config['low-stock-limit']) && (!empty($config['low-sto
                                         <select id='seller_id' name="seller_id" class='form-control'>
                                             <option value=''>Select Seller</option>
                                             <?php foreach ($sellers as $row) { ?>
-                                                <option value='<?= $row['id'] ?>'><?= $row['name'] ?></option>
+                                                <option value='<?= $row['id'] ?>' <?= $row['id'] == '1' ? 'selected' : '' ?>><?= $row['name'] ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

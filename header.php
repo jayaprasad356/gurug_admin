@@ -256,7 +256,7 @@ $res_logo = $db->getResult();
                         <!-- <li><a href="products-order.php"><i class="fa fa-reorder"></i> Products Order</a></li> -->
                     </ul>
                 </li>
-                <li class="treeview">
+                <!-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-male"></i>
                         <span>Sellers</span>
@@ -272,11 +272,11 @@ $res_logo = $db->getResult();
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="sellers.php"><i class="fa fa-sliders"></i> Manage Sellers</a></li>
-                        <!-- <li><a href="seller-transactions.php"><i class="fa fa-exchange"></i> Transactions</a></li> -->
+                        <li><a href="seller-transactions.php"><i class="fa fa-exchange"></i> Transactions</a></li>
                         <li><a href="seller-wallet-transactions.php"><i class="fa fa-credit-card"></i> Manage Wallet Transactions</a></li>
 
                     </ul>
-                </li>
+                </li> -->
                 <li class="treeview">
                     <a href="main-slider.php">
                         <i class="fa fa-picture-o"></i>
@@ -321,12 +321,12 @@ $res_logo = $db->getResult();
                         <li><a href="manage-customer-wallet.php"><i class="fa fa-line-chart"></i> Manage Customer Wallet</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <!-- <li class="treeview">
                     <a href="newsletter.php">
                         <i class="fa fa-envelope"></i>
                         <span>Newsletter</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="treeview">
                     <a href="return-requests.php">
                         <i class="fa fa-retweet"></i> <span>Return Requests</span>
@@ -345,7 +345,7 @@ $res_logo = $db->getResult();
                         <i class="fa fa-credit-card"></i> <span> Withdrawal Requests </span>
                     </a>
                 </li>
-                <?php if ($shippint_type) { ?>
+                <!-- <?php if ($shippint_type) { ?>
                     <li class="treeview delivery_boy">
                         <a href="#">
                             <i class="fa fa-male"></i>
@@ -360,7 +360,7 @@ $res_logo = $db->getResult();
                         </ul>
                     </li>
 
-                <?php } ?>
+                <?php } ?> -->
 
                 <li class="treeview">
                     <a href="notification.php"> <i class="fa fa-share-square-o"></i><span>Send notification</span>
@@ -384,7 +384,7 @@ $res_logo = $db->getResult();
                         <li class="treeview"><a href="front-end-policies.php"><i class="fa fa-money"></i><span>Policies</span></a></li>
                     </ul>
                 </li> -->
-                <li class="treeview">
+                <!-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-wrench"></i>
                         <span>System</span>
@@ -402,12 +402,12 @@ $res_logo = $db->getResult();
                         <li><a href="delivery-boy-privacy-policy.php"><i class="fa fa-exclamation-triangle"></i> Delivery Boy Privacy Policy </a></li>
                         <li><a href="manager-app-privacy-policy.php"><i class="fa fa-lock"></i> Manager App Privacy Policy </a></li>
                         <li><a href="seller-privacy-policy.php"><i class="fa fa-lock"></i> Seller Privacy Policy </a></li>
-                        <!-- <li><a href="api-key.php"><i class="fa fa-lock"></i> Secret Key </a></li> -->
+                        <li><a href="api-key.php"><i class="fa fa-lock"></i> Secret Key </a></li>
                         <li><a href="about-us.php"><i class="fa fa-info"></i> About Us </a></li>
-                        <!-- <li><a href="purchase-code.php"><i class="fa fa-check"></i> System Registration </a></li> -->
+                        <li><a href="purchase-code.php"><i class="fa fa-check"></i> System Registration </a></li>
 
                     </ul>
-                </li>
+                </li> -->
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-map-marker"></i>

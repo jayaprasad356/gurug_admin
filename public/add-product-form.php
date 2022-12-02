@@ -391,7 +391,7 @@ if (isset($_POST['btnAdd'])) {
                                 <select id='seller_id' name="seller_id" class='form-control'>
                                     <option value=''>Select Seller</option>
                                     <?php foreach ($sellers as $row) { ?>
-                                        <option value='<?= $row['id'] ?>'><?= $row['name'] ?></option>
+                                        <option value='<?= $row['id'] ?>' <?= $row['id'] == '1' ? 'selected' : '' ?>><?= $row['name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
