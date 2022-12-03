@@ -345,8 +345,7 @@ $res_logo = $db->getResult();
                         <i class="fa fa-credit-card"></i> <span> Withdrawal Requests </span>
                     </a>
                 </li>
-                <!-- <?php if ($shippint_type) { ?>
-                    <li class="treeview delivery_boy">
+                <li class="treeview delivery_boy">
                         <a href="#">
                             <i class="fa fa-male"></i>
                             <span>Delivery Boys</span>
@@ -359,8 +358,6 @@ $res_logo = $db->getResult();
 
                         </ul>
                     </li>
-
-                <?php } ?> -->
 
                 <li class="treeview">
                     <a href="notification.php"> <i class="fa fa-share-square-o"></i><span>Send notification</span>
