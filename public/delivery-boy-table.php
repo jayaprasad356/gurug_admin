@@ -14,7 +14,7 @@ $config = $fn->get_configurations();
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <section class="content-header">
-    <h1>Delivery Boys /<small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
+    <h1>Delivery Services /<small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -41,14 +41,22 @@ $config = $fn->get_configurations();
                                     <input type="text" class="form-control" name="name">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class=" col-md-4">
                                 <div class="form-group">
-                                    <label for="">Mobile</label>
-                                    <input type="number" class="form-control" name="mobile">
+                                    <label for='pincode_id'>Pincodes <small>( Ex : 100,205, 360 <comma separated>) </small></label>
+                                    <select name='pincode_id[]' id='pincode_id' class='form-control' required placeholder='Enter the pincode you want to allow delivery this delivery boy' multiple="multiple">
+                                        <?php $sql = 'select * from `pincodes` where `status` = 1 order by id desc';
+                                        $db->sql($sql);
+                                        $result = $db->getResult();
+                                        foreach ($result as $value) {
+                                        ?>
+                                            <option value='<?= $value['id'] ?>'><?= $value['pincode']  ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Password</label>
@@ -150,7 +158,7 @@ $config = $fn->get_configurations();
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div><!-- /.box-body -->
 
                     <div class="box-footer">
@@ -168,7 +176,7 @@ $config = $fn->get_configurations();
             <?php if ($permissions['delivery_boys']['read'] == 1) { ?>
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Delivery Boys</h3>
+                        <h3 class="box-title">Delivery Services</h3>
                     </div>
                     <div class="box-body table-responsive">
                         <table class="table table-hover" data-toggle="table" id="delivery-boys" data-url="api-firebase/get-bootstrap-table-data.php?table=delivery-boys" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","excel"]' data-export-options='{"fileName": "delivery-boys-list-<?= date('d-m-Y') ?>","ignoreColumn": ["operate"] }'>
@@ -176,19 +184,19 @@ $config = $fn->get_configurations();
                                 <tr>
                                     <th data-field="id" data-sortable="true">ID</th>
                                     <th data-field="name" data-sortable="true">Name</th>
-                                    <th data-field="mobile" data-sortable="true">Mobile</th>
+                                    <!-- <th data-field="mobile" data-sortable="true">Mobile</th>
                                     <th data-field="address" data-sortable="true">Address</th>
                                     <th data-field="bonus" data-sortable="true">Bonus(%)</th>
-                                    <th data-field="balance" data-sortable="true">Balance</th>
-                                    <th data-field="driving_license" data-sortable="true" data-visible="false">Driving License</th>
+                                    <th data-field="balance" data-sortable="true">Balance</th> -->
+                                    <!-- <th data-field="driving_license" data-sortable="true" data-visible="false">Driving License</th>
                                     <th data-field="national_identity_card" data-sortable="true" data-visible="false">National Identity Card</th>
                                     <th data-field="dob" data-sortable="true" data-visible="false">Date of Birth</th>
                                     <th data-field="bank_account_number" data-sortable="true" data-visible="false">Bank Account Number</th>
                                     <th data-field="bank_name" data-sortable="true" data-visible="false">Bank Name</th>
                                     <th data-field="account_name" data-sortable="true" data-visible="false">Account Name</th>
                                     <th data-field="ifsc_code" data-sortable="true" data-visible="false">IFSC Code</th>
-                                    <th data-field="other_payment_information" data-sortable="true">Other Payment Information</th>
-                                    <th data-field="pincode_id" data-sortable="true" data-visible="false">Pincode Id</th>
+                                    <th data-field="other_payment_information" data-sortable="true">Other Payment Information</th> -->
+                                    <th data-field="pincode_id" data-sortable="true" >Pincode</th>
                                     <th data-field="status">Status</th>
                                     <th data-field="is_available">Available</th>
                                     <th data-field="operate" data-events="actionEvents">Action</th>
@@ -226,7 +234,7 @@ $config = $fn->get_configurations();
                                 <label class="" for="">Name</label>
                                 <input type="text" id="update_name" name="update_name" class="form-control col-md-7 col-xs-12">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="" for="">Mobile</label>
                                 <input type="text" id="update_mobile" name="update_mobile" class="form-control col-md-7 col-xs-12" readonly>
                             </div>
@@ -289,11 +297,11 @@ $config = $fn->get_configurations();
                             <div class="row">
                                     <div class="col-md-offset-3 col-md-8" style="display:none;" id="not_assigned"></div>
                                 </div>
-                                <div class="row"></br></div>
+                                <div class="row"></br></div> -->
                             <div class="row">
                                 <div class=" col-md-12">
                                     <div class="form-group">
-                                        <label for='update_pincode_id'>Pincodes <small>( Ex : 100,205, 360 <comma separated>) </small></label>
+                                        <label for='update_pincode_id'>Pincodes <small>( Ex : 100,205, 360 <comma separated>) </small></label><br>
                                         <select name='update_pincode_id[]' id='update_pincode_id' class='form-control'  required placeholder='Enter the pincode you want to allow delivery this delivery boy' multiple="multiple">
                                             <?php
                                             $sql = 'select id,pincode from `pincodes` where `status` = 1 order by id desc';

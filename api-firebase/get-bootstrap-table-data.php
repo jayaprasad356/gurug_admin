@@ -1123,16 +1123,24 @@ if (isset($_GET['table']) && $_GET['table'] == 'delivery-boys') {
 
     if (isset($_GET['search']) && $_GET['search'] != '') {
         $search = $db->escapeString($fn->xss_clean($_GET['search']));
-        $where = " Where `id` like '%" . $search . "%' OR `name` like '%" . $search . "%' OR `mobile` like '%" . $search . "%' OR `address` like '%" . $search . "%'";
+        $where = "AND d.id like '%" . $search . "%' OR d.name like '%" . $search . "%' OR p.pincode like '%" . $search . "%' ";
+
+        // $where = " Where `id` like '%" . $search . "%' OR `name` like '%" . $search . "%' OR `mobile` like '%" . $search . "%' OR `address` like '%" . $search . "%'";
     }
 
-    $sql = "SELECT COUNT(*) as total FROM `delivery_boys` " . $where;
+    //new code
+    $join = "LEFT JOIN `pincodes` p ON d.pincode_id = p.id WHERE d.id IS NOT NULL ";
+    $sql = "SELECT COUNT(*) as `total` FROM `delivery_boys` d $join " . $where . "";
+
+    // $sql = "SELECT COUNT(*) as total FROM `delivery_boys` " . $where;
     $db->sql($sql);
     $res = $db->getResult();
     foreach ($res as $row)
         $total = $row['total'];
 
-    $sql = "SELECT * FROM `delivery_boys` " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
+        $sql = "SELECT d.id AS id,d.*,p.pincode AS pincode FROM `delivery_boys` d $join 
+        $where ORDER BY $sort $order LIMIT $offset, $limit";
+    // $sql = "SELECT * FROM `delivery_boys` " . $where . " ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . ", " . $limit;
 
     $db->sql($sql);
     $res = $db->getResult();
@@ -1152,29 +1160,30 @@ if (isset($_GET['table']) && $_GET['table'] == 'delivery-boys') {
 
         $tempRow['id'] = $row['id'];
         $tempRow['name'] = $row['name'];
-        if (defined('ALLOW_MODIFICATION') && ALLOW_MODIFICATION == 0) {
-            $tempRow['mobile'] = str_repeat("*", strlen($row['mobile']) - 3) . substr($row['mobile'], -3);
-        } else {
-            $tempRow['mobile'] = $row['mobile'];
-        }
-        $tempRow['address'] = $row['address'];
-        $tempRow['bonus'] = $row['bonus'];
-        $tempRow['balance'] = number_format($row['balance'], 2);
-        if (!empty($row['driving_license'])) {
-            $tempRow['driving_license'] = "<a data-lightbox='product' href='" . DOMAIN_URL . $path . $row['driving_license'] . "'><img src='" . DOMAIN_URL . $path . $row['driving_license'] . "' height='50' /></a>";
-            $tempRow['national_identity_card'] = "<a data-lightbox='product' href='" . $path . $row['national_identity_card'] . "'><img src='" . $path . $row['national_identity_card'] . "' height='50' /></a>";
-        } else {
-            $tempRow['national_identity_card'] = "<p>No National Identity Card</p>";
-            $tempRow['driving_license'] = "<p>No Driving License</p>";
-        }
-        $tempRow['dob'] = $row['dob'];
-        $tempRow['bank_account_number'] = $row['bank_account_number'];
-        $tempRow['bank_name'] = $row['bank_name'];
-        $tempRow['account_name'] = $row['account_name'];
-        $tempRow['other_payment_information'] = (!empty($row['other_payment_information'])) ? $row['other_payment_information'] : "";
-        $tempRow['pincode_id'] = (!empty($row['pincode_id'])) ? $row['pincode_id'] : "";
-        $tempRow['ifsc_code'] = $row['ifsc_code'];
-        $tempRow['cash_received'] = $row['cash_received'];
+        // if (defined('ALLOW_MODIFICATION') && ALLOW_MODIFICATION == 0) {
+        //     $tempRow['mobile'] = str_repeat("*", strlen($row['mobile']) - 3) . substr($row['mobile'], -3);
+        // } else {
+        //     $tempRow['mobile'] = $row['mobile'];
+        // }
+        // $tempRow['address'] = $row['address'];
+        // $tempRow['bonus'] = $row['bonus'];
+        // $tempRow['balance'] = number_format($row['balance'], 2);
+        // if (!empty($row['driving_license'])) {
+        //     $tempRow['driving_license'] = "<a data-lightbox='product' href='" . DOMAIN_URL . $path . $row['driving_license'] . "'><img src='" . DOMAIN_URL . $path . $row['driving_license'] . "' height='50' /></a>";
+        //     $tempRow['national_identity_card'] = "<a data-lightbox='product' href='" . $path . $row['national_identity_card'] . "'><img src='" . $path . $row['national_identity_card'] . "' height='50' /></a>";
+        // } else {
+        //     $tempRow['national_identity_card'] = "<p>No National Identity Card</p>";
+        //     $tempRow['driving_license'] = "<p>No Driving License</p>";
+        // }
+        // $tempRow['dob'] = $row['dob'];
+        // $tempRow['bank_account_number'] = $row['bank_account_number'];
+        // $tempRow['bank_name'] = $row['bank_name'];
+        // $tempRow['account_name'] = $row['account_name'];
+        // $tempRow['other_payment_information'] = (!empty($row['other_payment_information'])) ? $row['other_payment_information'] : "";
+        // $tempRow['pincode_id'] = (!empty($row['pincode_id'])) ? $row['pincode_id'] : "";
+        // $tempRow['ifsc_code'] = $row['ifsc_code'];
+        $tempRow['pincode_id'] = $row['pincode'];
+        // $tempRow['cash_received'] = $row['cash_received'];
         if ($row['status'] == 0)
             $tempRow['status'] = "<label class='label label-danger'>Deactive</label>";
         else

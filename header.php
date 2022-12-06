@@ -348,7 +348,7 @@ $res_logo = $db->getResult();
                 <li class="treeview delivery_boy">
                         <a href="#">
                             <i class="fa fa-male"></i>
-                            <span>Delivery Boys</span>
+                            <span>Delivery Services</span>
                             <i class="fa fa-angle-right pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
@@ -447,11 +447,11 @@ $res_logo = $db->getResult();
                 <?php
                 if ($role == 'admin' || $role == 'super admin') {
                 ?>
-                    <li class="treeview">
+                    <!-- <li class="treeview">
                         <a href="system-users.php">
                             <i class="fa fa-users" class="active"></i> <span>System Users</span>
                         </a>
-                    </li>
+                    </li> -->
                 <?php }
                 $query = "SELECT version FROM updates ORDER BY id DESC LIMIT 1";
                 $db->sql($query);
