@@ -1570,13 +1570,13 @@ function isJSON($string)
         $.ajax({
             type: 'POST',
             url: "public/db-operation.php",
-            data: 'get_categories_by_seller=1&seller_id=' + seller_id,
-            beforeSend: function() {
-                $('#category_id').html('<option>Please wait..</option>');
-            },
-            success: function(result) {
-                $('#category_id').html(result);
-            }
+            // data: 'get_categories_by_seller=1&seller_id=' + seller_id,
+            // beforeSend: function() {
+            //     $('#category_id').html('<option>Please wait..</option>');
+            // },
+            // success: function(result) {
+            //     $('#category_id').html(result);
+            // }
         })
         fetchPickup_locations(standard_shipping, seller_id)
     });

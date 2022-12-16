@@ -585,7 +585,15 @@ if (isset($_POST['btnAdd'])) {
                         <div class="form-group">
                             <label for="category_id">Category :</label> <i class="text-danger asterik">*</i><?php echo isset($error['category_id']) ? $error['category_id'] : ''; ?>
                             <select name="category_id" id="category_id" class="form-control">
-                                <option value="">--Select Category--</option>
+                            <option value="">--Select Category--</option>
+								<?php
+    								$sql = "SELECT * FROM category";
+    								$db->sql($sql);
+									$res = $db->getResult();
+									foreach ($res as $category) {
+										echo "<option value='" . $category['id'] . "'>" . $category['name'] . "</option>";
+									}
+								?>
 
                             </select>
                             <br />
@@ -1031,13 +1039,13 @@ if (isset($_POST['btnAdd'])) {
         $.ajax({
             type: 'POST',
             url: "public/db-operation.php",
-            data: 'get_categories_by_seller=1&seller_id=' + seller_id,
-            beforeSend: function() {
-                $('#category_id').html('<option>Please wait..</option>');
-            },
-            success: function(result) {
-                $('#category_id').html(result);
-            }
+            // data: 'get_categories_by_seller=1&seller_id=' + seller_id,
+            // beforeSend: function() {
+            //     $('#category_id').html('<option>Please wait..</option>');
+            // },
+            // success: function(result) {
+            //     $('#category_id').html(result);
+            // }
         })
         var standard_shipping = 1
         fetchPickup_locations(standard_shipping, seller_id)
