@@ -252,7 +252,7 @@ $res_logo = $db->getResult();
                         <!-- <li><a href="media.php"><i class="fa fa-file-image-o"></i> Media</a></li>
                         <li><a href="bulk-upload.php"><i class="fa fa-upload"></i> Bulk Upload</a></li> -->
                         <!-- <li><a href="bulk-update.php"><i class="fa fa-pencil"></i> Bulk Update</a></li> -->
-                        <li><a href="products-taxes.php"><i class="fa fa-plus"></i> Taxes</a></li>
+                        <!-- <li><a href="products-taxes.php"><i class="fa fa-plus"></i> Taxes</a></li> -->
                         <!-- <li><a href="products-order.php"><i class="fa fa-reorder"></i> Products Order</a></li> -->
                     </ul>
                 </li>

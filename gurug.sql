@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2022 at 06:53 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Dec 17, 2022 at 10:33 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -807,6 +807,16 @@ CREATE TABLE `taxes` (
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `taxes`
+--
+
+INSERT INTO `taxes` (`id`, `title`, `percentage`, `status`) VALUES
+(1, '5%', 5.00, 1),
+(2, '12%', 12.00, 1),
+(3, '18%', 18.00, 1),
+(4, '28%', 28.00, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -867,7 +877,9 @@ INSERT INTO `unit` (`id`, `name`, `short_code`, `parent_id`, `conversion`) VALUE
 (4, 'Milliliter', 'ml', 3, 1000),
 (5, 'Pack', 'pack', NULL, NULL),
 (6, 'Piece', 'pc', NULL, NULL),
-(7, 'Meter', 'm', NULL, NULL);
+(7, 'Meter', 'm', NULL, NULL),
+(8, 'Centimeter', 'cm', NULL, NULL),
+(10, 'Inches', 'Inch', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1513,7 +1525,7 @@ ALTER TABLE `subcategory`
 -- AUTO_INCREMENT for table `taxes`
 --
 ALTER TABLE `taxes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `time_slots`
@@ -1531,7 +1543,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `unit`
 --
 ALTER TABLE `unit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `updates`
