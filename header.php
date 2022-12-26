@@ -252,7 +252,7 @@ $res_logo = $db->getResult();
                         <!-- <li><a href="media.php"><i class="fa fa-file-image-o"></i> Media</a></li>
                         <li><a href="bulk-upload.php"><i class="fa fa-upload"></i> Bulk Upload</a></li> -->
                         <!-- <li><a href="bulk-update.php"><i class="fa fa-pencil"></i> Bulk Update</a></li> -->
-                        <!-- <li><a href="products-taxes.php"><i class="fa fa-plus"></i> Taxes</a></li> -->
+                        <li><a href="products-taxes.php"><i class="fa fa-plus"></i> Taxes</a></li>
                         <!-- <li><a href="products-order.php"><i class="fa fa-reorder"></i> Products Order</a></li> -->
                     </ul>
                 </li>
@@ -381,19 +381,19 @@ $res_logo = $db->getResult();
                         <li class="treeview"><a href="front-end-policies.php"><i class="fa fa-money"></i><span>Policies</span></a></li>
                     </ul>
                 </li> -->
-                <!-- <li class="treeview">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-wrench"></i>
                         <span>System</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="settings.php"><i class="fa fa-cogs"></i> Store Settings </a></li>
+                        <!-- <li><a href="settings.php"><i class="fa fa-cogs"></i> Store Settings </a></li>
                         <li><a href="payment-methods-settings.php"><i class="fa fa-dollar"></i> Payment Methods </a></li>
                         <li><a href="time-slots.php"><i class="fa fa-clock-o"></i> Time slots </a></li>
-                        <li><a href="notification-settings.php"><i class="fa fa-bell-o"></i> Notification Settings</a></li>
+                        <li><a href="notification-settings.php"><i class="fa fa-bell-o"></i> Notification Settings</a></li> -->
                         <li><a href="units.php"><i class="fa fa-dot-circle-o"></i> Units</a></li>
-                        <li class=""><a href="shipping-methods.php"><i class="fa fa-rocket"></i> Shipping Method</a></li>
+                        <!-- <li class=""><a href="shipping-methods.php"><i class="fa fa-rocket"></i> Shipping Method</a></li>
                         <li><a href="contact-us.php"><i class="fa fa-phone"></i> Contact Us </a></li>
                         <li><a href="privacy-policy.php"><i class="fa fa-user-secret"></i> Privacy Policy </a></li>
                         <li><a href="delivery-boy-privacy-policy.php"><i class="fa fa-exclamation-triangle"></i> Delivery Boy Privacy Policy </a></li>
@@ -401,10 +401,10 @@ $res_logo = $db->getResult();
                         <li><a href="seller-privacy-policy.php"><i class="fa fa-lock"></i> Seller Privacy Policy </a></li>
                         <li><a href="api-key.php"><i class="fa fa-lock"></i> Secret Key </a></li>
                         <li><a href="about-us.php"><i class="fa fa-info"></i> About Us </a></li>
-                        <li><a href="purchase-code.php"><i class="fa fa-check"></i> System Registration </a></li>
+                        <li><a href="purchase-code.php"><i class="fa fa-check"></i> System Registration </a></li> -->
 
                     </ul>
-                </li> -->
+                </li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-map-marker"></i>
