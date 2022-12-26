@@ -119,23 +119,13 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for='catogories_ids'>Category IDs <small>( Ex : 100,205, 360 <comma separated>)</small></label>
-                                        <select name='cat_ids[]' id='cat_ids' class='form-control' placeholder='Enter the category IDs you want to assign Seller' required multiple="multiple">
-                                            <?php $sql = 'select id,name from `category`  order by id desc';
-                                            $db->sql($sql);
-
-                                            $result = $db->getResult();
-                                            foreach ($result as $value) {
-                                            ?>
-                                                <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
-                                            <?php } ?>
-
-                                        </select>
+                                        <label for="">State</label>
+                                        <input type="text" class="form-control" name="state" id="state">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-4">
+                            <!-- <div class="row">
+                                <div class="form-group col-md-8">
                                     <div class="form-group">
                                         <label for="">State</label>
                                         <input type="text" class="form-control" name="state" id="state">
@@ -147,8 +137,8 @@
                                         <input type="number" class="form-control" name="account_number">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+                            </div> -->
+                            <!-- <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
                                         <label for="">Bank's IFSC Code</label>
@@ -252,7 +242,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="row"> -->
                                 <div class="form-group col-md-3">
                                     <div class="form-group">
                                         <label class="control-label">View Customer's Details? </label>
@@ -308,11 +297,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- </div> -->
 
-                                <!-- </div> -->
-
-                            </div>
+                            </div> -->
 
                         </div><!-- /.box-body -->
                         <div class="box-footer">

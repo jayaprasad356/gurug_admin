@@ -2219,9 +2219,9 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
     $email = $db->escapeString($fn->xss_clean($_POST['email']));
     $commission = (isset($_POST['commission']) && $_POST['commission'] != "") ? $db->escapeString($fn->xss_clean($_POST['commission'])) : "0";
 
-    $pan_number = $db->escapeString($fn->xss_clean($_POST['pan_number']));
-    $tax_number = $db->escapeString($fn->xss_clean($_POST['tax_number']));
-    $tax_name = $db->escapeString($fn->xss_clean($_POST['tax_name']));
+    $pan_number = (isset($_POST['pan_number']) && $_POST['pan_number'] != "") ? $db->escapeString($fn->xss_clean($_POST['pan_number'])) : "";
+    $tax_number = (isset($_POST['tax_number']) && $_POST['tax_number'] != "") ? $db->escapeString($fn->xss_clean($_POST['tax_number'])) : "";
+    $tax_name = (isset($_POST['tax_name']) && $_POST['tax_name'] != "") ? $db->escapeString($fn->xss_clean($_POST['tax_name'])) : "";
     $status = (isset($_POST['status']) && $_POST['status'] != "") ? $db->escapeString($fn->xss_clean($_POST['status'])) : "2";
     $customer_privacy = (isset($_POST['customer_privacy']) && $_POST['customer_privacy'] != "") ? $db->escapeString($fn->xss_clean($_POST['customer_privacy'])) : "0";
     $store_url = (isset($_POST['store_url']) && $_POST['store_url'] != "") ? $db->escapeString($fn->xss_clean($_POST['store_url'])) : "";
@@ -2270,40 +2270,40 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
         }
     }
     // address_proof national_id_card
-    if ($_FILES['national_id_card']['error'] == 0 && $_FILES['national_id_card']['size'] > 0) {
+    // if ($_FILES['national_id_card']['error'] == 0 && $_FILES['national_id_card']['size'] > 0) {
 
-        $extension = pathinfo($_FILES["national_id_card"]["name"])['extension'];
-        $result = $fn->validate_image($_FILES["national_id_card"]);
-        if (!$result) {
-            echo " <span class='label label-danger'>National id card image type must jpg, jpeg, gif, or png!</span>";
-            return false;
-            exit();
-        }
-        $national_id_card = microtime(true) . '.' . strtolower($extension);
-        $full_path = $target_path . "" . $national_id_card;
-        if (!move_uploaded_file($_FILES["national_id_card"]["tmp_name"], $full_path)) {
-            echo "<p class='alert alert-danger'>Invalid directory to load image!</p>";
-            return false;
-        }
-    }
-    if ($_FILES['address_proof']['error'] == 0 && $_FILES['address_proof']['size'] > 0) {
+    //     $extension = pathinfo($_FILES["national_id_card"]["name"])['extension'];
+    //     $result = $fn->validate_image($_FILES["national_id_card"]);
+    //     if (!$result) {
+    //         echo " <span class='label label-danger'>National id card image type must jpg, jpeg, gif, or png!</span>";
+    //         return false;
+    //         exit();
+    //     }
+    //     $national_id_card = microtime(true) . '.' . strtolower($extension);
+    //     $full_path = $target_path . "" . $national_id_card;
+    //     if (!move_uploaded_file($_FILES["national_id_card"]["tmp_name"], $full_path)) {
+    //         echo "<p class='alert alert-danger'>Invalid directory to load image!</p>";
+    //         return false;
+    //     }
+    // }
+    // if ($_FILES['address_proof']['error'] == 0 && $_FILES['address_proof']['size'] > 0) {
 
-        $extension = pathinfo($_FILES["address_proof"]["name"])['extension'];
-        $result = $fn->validate_image($_FILES["address_proof"]);
-        if (!$result) {
-            echo " <span class='label label-danger'>Address Proof card image type must jpg, jpeg, gif, or png!</span>";
-            return false;
-            exit();
-        }
-        $address_proof = microtime(true) . '.' . strtolower($extension);
-        $full_path = $target_path . "" . $address_proof;
-        if (!move_uploaded_file($_FILES["address_proof"]["tmp_name"], $full_path)) {
-            echo "<p class='alert alert-danger'>Invalid directory to load image!</p>";
-            return false;
-        }
-    }
+    //     $extension = pathinfo($_FILES["address_proof"]["name"])['extension'];
+    //     $result = $fn->validate_image($_FILES["address_proof"]);
+    //     if (!$result) {
+    //         echo " <span class='label label-danger'>Address Proof card image type must jpg, jpeg, gif, or png!</span>";
+    //         return false;
+    //         exit();
+    //     }
+    //     $address_proof = microtime(true) . '.' . strtolower($extension);
+    //     $full_path = $target_path . "" . $address_proof;
+    //     if (!move_uploaded_file($_FILES["address_proof"]["tmp_name"], $full_path)) {
+    //         echo "<p class='alert alert-danger'>Invalid directory to load image!</p>";
+    //         return false;
+    //     }
+    // }
 
-    $sql = "INSERT INTO `seller`(`name`, `store_name`,`slug`,`email`, `mobile`, `password`, `store_url`, `logo`, `store_description`, `street`, `pincode_id`,`city_id`, `state`, `account_number`, `bank_ifsc_code`, `account_name`, `bank_name`, `commission`,`status`,`categories`,`require_products_approval`,`national_identity_card`,`address_proof`,`pan_number`,`tax_name`,`tax_number`,`customer_privacy`,`latitude`,`longitude`) VALUES ('$name','$store_name','$slug','$email', '$mobile', '$password','$store_url' ,'$filename', '$store_description', '$street',$pincode_id,$city_id,'$state','$account_number','$bank_ifsc_code','$account_name','$bank_name','$commission','$status','$cat_ids','$require_products_approval','$national_id_card','$address_proof','$pan_number','$tax_name','$tax_number','$customer_privacy','$latitude','$longitude')";
+    $sql = "INSERT INTO `seller`(`name`, `store_name`,`slug`,`email`, `mobile`, `password`, `store_url`, `logo`, `store_description`, `street`, `pincode_id`,`city_id`, `state`, `account_number`, `bank_ifsc_code`, `account_name`, `bank_name`, `commission`,`status`,`categories`,`require_products_approval`,`national_identity_card`,`address_proof`,`pan_number`,`tax_name`,`tax_number`,`customer_privacy`,`latitude`,`longitude`) VALUES ('$name','$store_name','$slug','$email', '$mobile', '$password','$store_url' ,'$filename', '$store_description', '$street',$pincode_id,$city_id,'$state','$account_number','$bank_ifsc_code','$account_name','$bank_name','$commission','$status','$cat_ids','$require_products_approval','','','$pan_number','$tax_name','$tax_number','$customer_privacy','$latitude','$longitude')";
     if ($db->sql($sql)) {
         echo "<div class='alert alert-success'> Seller Added Successfully!</div>";
     } else {
@@ -2360,10 +2360,10 @@ if (isset($_POST['update_seller'])  && !empty($_POST['update_seller'])) {
     $require_products_approval = (isset($_POST['require_products_approval']) && $_POST['require_products_approval'] != "") ? $db->escapeString($fn->xss_clean($_POST['require_products_approval'])) : 0;
     $cat_id = (isset($_POST['cat_ids'])) ? $fn->xss_clean_array($_POST['cat_ids']) : "";
     $cat_ids = "";
-    if (!empty($cat_id)) {
-        $cat_ids = implode(",", $cat_id);
-        $cat_ids = $db->escapeString($cat_ids);
-    }
+    // if (!empty($cat_id)) {
+    //     $cat_ids = implode(",", $cat_id);
+    //     $cat_ids = $db->escapeString($cat_ids);
+    // }
 
     $password = !empty($_POST['password']) ? $db->escapeString($fn->xss_clean($_POST['password'])) : '';
     $password = !empty($password) ? md5($password) : '';
@@ -2393,59 +2393,59 @@ if (isset($_POST['update_seller'])  && !empty($_POST['update_seller'])) {
         $sql = "UPDATE seller SET `logo`='" . $filename . "' WHERE `id`=" . $id;
         $db->sql($sql);
     }
-    if ($_FILES['national_id_card']['size'] != 0 && $_FILES['national_id_card']['error'] == 0 && !empty($_FILES['national_id_card'])) {
-        //image isn't empty and update the image
-        $old_national_identity_card = $db->escapeString($fn->xss_clean($_POST['old_national_identity_card']));
-        $extension = pathinfo($_FILES["national_id_card"]["name"])['extension'];
+    // if ($_FILES['national_id_card']['size'] != 0 && $_FILES['national_id_card']['error'] == 0 && !empty($_FILES['national_id_card'])) {
+    //     //image isn't empty and update the image
+    //     $old_national_identity_card = $db->escapeString($fn->xss_clean($_POST['old_national_identity_card']));
+    //     $extension = pathinfo($_FILES["national_id_card"]["name"])['extension'];
 
-        $result = $fn->validate_image($_FILES["national_id_card"]);
-        if (!$result) {
-            echo " <span class='label label-danger'>National id card image type must jpg, jpeg, gif, or png!</span>";
-            return false;
-            exit();
-        }
-        $target_path = '../upload/seller/';
-        $national_id_card = microtime(true) . '.' . strtolower($extension);
-        $full_path = $target_path . "" . $national_id_card;
-        if (!move_uploaded_file($_FILES["national_id_card"]["tmp_name"], $full_path)) {
-            echo '<p class="alert alert-danger">Can not upload image.</p>';
-            return false;
-            exit();
-        }
-        if (!empty($old_national_identity_card)) {
-            unlink($target_path . $old_national_identity_card);
-        }
-        $sql = "UPDATE seller SET `national_identity_card`='" . $national_id_card . "' WHERE `id`=" . $id;
-        $db->sql($sql);
-    }
-    if ($_FILES['address_proof']['size'] != 0 && $_FILES['address_proof']['error'] == 0 && !empty($_FILES['address_proof'])) {
-        //image isn't empty and update the image
-        $old_address_proof = $db->escapeString($fn->xss_clean($_POST['old_address_proof']));
-        $extension = pathinfo($_FILES["address_proof"]["name"])['extension'];
+    //     $result = $fn->validate_image($_FILES["national_id_card"]);
+    //     if (!$result) {
+    //         echo " <span class='label label-danger'>National id card image type must jpg, jpeg, gif, or png!</span>";
+    //         return false;
+    //         exit();
+    //     }
+    //     $target_path = '../upload/seller/';
+    //     $national_id_card = microtime(true) . '.' . strtolower($extension);
+    //     $full_path = $target_path . "" . $national_id_card;
+    //     if (!move_uploaded_file($_FILES["national_id_card"]["tmp_name"], $full_path)) {
+    //         echo '<p class="alert alert-danger">Can not upload image.</p>';
+    //         return false;
+    //         exit();
+    //     }
+    //     if (!empty($old_national_identity_card)) {
+    //         unlink($target_path . $old_national_identity_card);
+    //     }
+    //     $sql = "UPDATE seller SET `national_identity_card`='" . $national_id_card . "' WHERE `id`=" . $id;
+    //     $db->sql($sql);
+    // }
+    // if ($_FILES['address_proof']['size'] != 0 && $_FILES['address_proof']['error'] == 0 && !empty($_FILES['address_proof'])) {
+    //     //image isn't empty and update the image
+    //     $old_address_proof = $db->escapeString($fn->xss_clean($_POST['old_address_proof']));
+    //     $extension = pathinfo($_FILES["address_proof"]["name"])['extension'];
 
-        $result = $fn->validate_image($_FILES["address_proof"]);
-        if (!$result) {
-            echo " <span class='label label-danger'>Address Proof card image type must jpg, jpeg, gif, or png!</span>";
-            return false;
-            exit();
-        }
-        $target_path = '../upload/seller/';
-        $address_proof = microtime(true) . '.' . strtolower($extension);
-        $full_path = $target_path . "" . $address_proof;
-        if (!move_uploaded_file($_FILES["address_proof"]["tmp_name"], $full_path)) {
-            echo '<p class="alert alert-danger">Can not upload image.</p>';
-            return false;
-            exit();
-        }
-        if (!empty($old_address_proof)) {
-            unlink($target_path . $old_address_proof);
-        }
-        $sql = "UPDATE seller SET `address_proof`='" . $address_proof . "' WHERE `id`=" . $id;
-        $db->sql($sql);
-    }
+    //     $result = $fn->validate_image($_FILES["address_proof"]);
+    //     if (!$result) {
+    //         echo " <span class='label label-danger'>Address Proof card image type must jpg, jpeg, gif, or png!</span>";
+    //         return false;
+    //         exit();
+    //     }
+    //     $target_path = '../upload/seller/';
+    //     $address_proof = microtime(true) . '.' . strtolower($extension);
+    //     $full_path = $target_path . "" . $address_proof;
+    //     if (!move_uploaded_file($_FILES["address_proof"]["tmp_name"], $full_path)) {
+    //         echo '<p class="alert alert-danger">Can not upload image.</p>';
+    //         return false;
+    //         exit();
+    //     }
+    //     if (!empty($old_address_proof)) {
+    //         unlink($target_path . $old_address_proof);
+    //     }
+    //     $sql = "UPDATE seller SET `address_proof`='" . $address_proof . "' WHERE `id`=" . $id;
+    //     $db->sql($sql);
+    // }
 
     if (!empty($password)) {
-        $sql = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`password`='$password',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval' ,`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
+        $sql_ = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`password`='$password',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval' ,`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
     } else {
         $sql = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval',`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
     }

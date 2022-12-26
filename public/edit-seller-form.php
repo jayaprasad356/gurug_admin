@@ -47,8 +47,8 @@ $res = $db->getResult();
                             <input type="hidden" id="update_id" name="update_id" required value="<?= $ID; ?>">
                             <input type="hidden" id="hide_description" name="hide_description">
                             <input type="hidden" id="old_logo" name="old_logo" required value="<?= $res[0]['logo']; ?>">
-                            <input type="hidden" id="old_national_identity_card" name="old_national_identity_card" required value="<?= $res[0]['national_identity_card']; ?>">
-                            <input type="hidden" id="old_address_proof" name="old_address_proof" required value="<?= $res[0]['address_proof']; ?>">
+                            <!-- <input type="hidden" id="old_national_identity_card" name="old_national_identity_card" required value="<?= $res[0]['national_identity_card']; ?>">
+                            <input type="hidden" id="old_address_proof" name="old_address_proof" required value="<?= $res[0]['address_proof']; ?>"> -->
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
@@ -101,14 +101,14 @@ $res = $db->getResult();
                             </div>
                             <div class="row">
 
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-5">
                                     <div class="form-group">
                                         <label for="exampleInputFile">Logo</label>
                                         <input type="file" name="store_logo" id="store_logo">
                                         <p class="help-block"><img src="<?php echo DOMAIN_URL . 'upload/seller/' . $res[0]['logo']; ?>" style="max-width:100%" /></p>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-3">
+                                <!-- <div class="form-group col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputFile">National Identity Card</label>
                                         <input type="file" name="national_id_card" id="national_id_card">
@@ -121,7 +121,7 @@ $res = $db->getResult();
                                         <input type="file" name="address_proof" id="address_proof">
                                         <p class="help-block"><img src="<?php echo DOMAIN_URL . 'upload/seller/' . $res[0]['address_proof']; ?>" style="max-width:100%" /></p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4">
@@ -180,15 +180,15 @@ $res = $db->getResult();
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <!-- <div class="form-group col-md-4">
                                     <div class="form-group">
                                         <label for="">PAN Number</label>
                                         <input type="text" class="form-control" name="pan_number" value="<?= $res[0]['pan_number']; ?>" required>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
                                         <label for="">Bank's IFSC Code</label>
@@ -281,11 +281,11 @@ $res = $db->getResult();
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
 
 
-                                <div class="form-group col-md-3">
+                                <!-- <div class="form-group col-md-3">
                                     <div class="form-group">
                                         <label class="control-label">Require Product's Approval</label>
                                         <div id="status" class="btn-group">
@@ -298,7 +298,6 @@ $res = $db->getResult();
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="row"> -->
                                 <div class="form-group col-md-3">
                                     <div class="form-group">
                                         <label class="control-label">View Customer's Details? </label>
@@ -337,7 +336,7 @@ $res = $db->getResult();
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group col-md-5">
                                     <div class="form-group">
                                         <label class="control-label">Status</label>
@@ -354,9 +353,7 @@ $res = $db->getResult();
                                         </div>
                                     </div>
                                 </div>
-                                <!-- </div> -->
 
-                                <!-- </div> -->
 
                             </div>
                             <div class="box-footer">
