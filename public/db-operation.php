@@ -2213,10 +2213,9 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
     }
 
     $name = $db->escapeString($fn->xss_clean($_POST['name']));
-    $store_name = $db->escapeString($fn->xss_clean($_POST['store_name']));
-    $slug = $function->slugify($db->escapeString($fn->xss_clean($_POST['store_name'])), 'seller');
-    $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
-    $email = $db->escapeString($fn->xss_clean($_POST['email']));
+    $store_name = (isset($_POST['store_name']) && $_POST['store_name'] != "") ? $db->escapeString($fn->xss_clean($_POST['store_name'])) : "";
+    $mobile = (isset($_POST['mobile']) && $_POST['mobile'] != "") ? $db->escapeString($fn->xss_clean($_POST['mobile'])) : "";
+    $email = (isset($_POST['email']) && $_POST['email'] != "") ? $db->escapeString($fn->xss_clean($_POST['email'])) : "";
     $commission = (isset($_POST['commission']) && $_POST['commission'] != "") ? $db->escapeString($fn->xss_clean($_POST['commission'])) : "0";
 
     $pan_number = (isset($_POST['pan_number']) && $_POST['pan_number'] != "") ? $db->escapeString($fn->xss_clean($_POST['pan_number'])) : "";
@@ -2237,38 +2236,38 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
     $latitude = (isset($_POST['latitude']) && $_POST['latitude'] != "") ? $db->escapeString($fn->xss_clean($_POST['latitude'])) : "0";
     $longitude = (isset($_POST['longitude']) && $_POST['longitude'] != "") ? $db->escapeString($fn->xss_clean($_POST['longitude'])) : "0";
     $require_products_approval = (isset($_POST['require_products_approval']) && $_POST['require_products_approval'] != "") ? $db->escapeString($fn->xss_clean($_POST['require_products_approval'])) : 0;
-    $cat_id = $fn->xss_clean_array($_POST['cat_ids']);
-    $cat_ids = implode(",", $cat_id);
-    $password = $db->escapeString($fn->xss_clean($_POST['password']));
-    $password = md5($password);
-    $sql = "SELECT id FROM seller WHERE mobile='$mobile'";
-    $db->sql($sql);
-    $res = $db->getResult();
-    $count = $db->numRows($res);
-    if ($count > 0) {
-        echo '<label class="alert alert-danger">Mobile Number Already Exists!</label>';
-        return false;
-    }
-    $target_path = '../upload/seller/';
-    if (!is_dir($target_path)) {
-        mkdir($target_path, 0777, true);
-    }
-    if ($_FILES['store_logo']['error'] == 0 && $_FILES['store_logo']['size'] > 0) {
+    $cat_id = '';
+    $cat_ids = '';
+    $password = '';
+    $slug = '';
+    // $sql = "SELECT id FROM seller WHERE mobile='$mobile'";
+    // $db->sql($sql);
+    // $res = $db->getResult();
+    // $count = $db->numRows($res);
+    // if ($count > 0) {
+    //     echo '<label class="alert alert-danger">Mobile Number Already Exists!</label>';
+    //     return false;
+    // }
+    // $target_path = '../upload/seller/';
+    // if (!is_dir($target_path)) {
+    //     mkdir($target_path, 0777, true);
+    // }
+    // if ($_FILES['store_logo']['error'] == 0 && $_FILES['store_logo']['size'] > 0) {
 
-        $extension = pathinfo($_FILES["store_logo"]["name"])['extension'];
-        $result = $fn->validate_image($_FILES["store_logo"]);
-        if (!$result) {
-            echo " <span class='label label-danger'>Logo image type must jpg, jpeg, gif, or png!</span>";
-            return false;
-            exit();
-        }
-        $filename = microtime(true) . '.' . strtolower($extension);
-        $full_path = $target_path . "" . $filename;
-        if (!move_uploaded_file($_FILES["store_logo"]["tmp_name"], $full_path)) {
-            echo "<p class='alert alert-danger'>Invalid directory to load image!</p>";
-            return false;
-        }
-    }
+    //     $extension = pathinfo($_FILES["store_logo"]["name"])['extension'];
+    //     $result = $fn->validate_image($_FILES["store_logo"]);
+    //     if (!$result) {
+    //         echo " <span class='label label-danger'>Logo image type must jpg, jpeg, gif, or png!</span>";
+    //         return false;
+    //         exit();
+    //     }
+    //     $filename = microtime(true) . '.' . strtolower($extension);
+    //     $full_path = $target_path . "" . $filename;
+    //     if (!move_uploaded_file($_FILES["store_logo"]["tmp_name"], $full_path)) {
+    //         echo "<p class='alert alert-danger'>Invalid directory to load image!</p>";
+    //         return false;
+    //     }
+    // }
     // address_proof national_id_card
     // if ($_FILES['national_id_card']['error'] == 0 && $_FILES['national_id_card']['size'] > 0) {
 
@@ -2303,7 +2302,7 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
     //     }
     // }
 
-    $sql = "INSERT INTO `seller`(`name`, `store_name`,`slug`,`email`, `mobile`, `password`, `store_url`, `logo`, `store_description`, `street`, `pincode_id`,`city_id`, `state`, `account_number`, `bank_ifsc_code`, `account_name`, `bank_name`, `commission`,`status`,`categories`,`require_products_approval`,`national_identity_card`,`address_proof`,`pan_number`,`tax_name`,`tax_number`,`customer_privacy`,`latitude`,`longitude`) VALUES ('$name','$store_name','$slug','$email', '$mobile', '$password','$store_url' ,'$filename', '$store_description', '$street',$pincode_id,$city_id,'$state','$account_number','$bank_ifsc_code','$account_name','$bank_name','$commission','$status','$cat_ids','$require_products_approval','','','$pan_number','$tax_name','$tax_number','$customer_privacy','$latitude','$longitude')";
+    $sql = "INSERT INTO `seller`(`name`, `store_name`,`slug`,`email`, `mobile`, `password`, `store_url`,`store_description`, `street`, `pincode_id`,`city_id`, `state`, `account_number`, `bank_ifsc_code`, `account_name`, `bank_name`, `commission`,`status`,`categories`,`require_products_approval`,`national_identity_card`,`address_proof`,`pan_number`,`tax_name`,`tax_number`,`customer_privacy`,`latitude`,`longitude`) VALUES ('$name','$store_name','$slug','$email', '$mobile', '$password','$store_url' ,'$store_description', '$street',$pincode_id,$city_id,'$state','$account_number','$bank_ifsc_code','$account_name','$bank_name','$commission','$status','$cat_ids','$require_products_approval','','','$pan_number','$tax_name','$tax_number','$customer_privacy','$latitude','$longitude')";
     if ($db->sql($sql)) {
         echo "<div class='alert alert-success'> Seller Added Successfully!</div>";
     } else {
@@ -2326,73 +2325,73 @@ if (isset($_POST['update_seller'])  && !empty($_POST['update_seller'])) {
     }
     $id = $db->escapeString($fn->xss_clean($_POST['update_id']));
     $name = $db->escapeString($fn->xss_clean($_POST['name']));
-    $store_name = $db->escapeString($fn->xss_clean($_POST['store_name']));
-    $slug = $function->slugify($db->escapeString($fn->xss_clean($_POST['store_name'])), 'seller');
-    $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
-    $email = $db->escapeString($fn->xss_clean($_POST['email']));
-    $tax_name = $db->escapeString($fn->xss_clean($_POST['tax_name']));
-    $tax_number = $db->escapeString($fn->xss_clean($_POST['tax_number']));
-    $pan_number = $db->escapeString($fn->xss_clean($_POST['pan_number']));
-    $commission = $db->escapeString($fn->xss_clean($_POST['commission']));
-    $store_description = (isset($_POST['hide_description']) && ($_POST['hide_description'] != "")) ? $db->escapeString($fn->xss_clean($_POST['hide_description'])) : "";
-    if (strpos($name, "'") !== false) {
-        $name = str_replace("'", "''", "$name");
-        if (strpos($store_description, "'") !== false)
-            $store_description = str_replace("'", "''", "$store_description");
-    }
-    $status = (isset($_POST['status']) && $_POST['status'] != "") ? $db->escapeString($fn->xss_clean($_POST['status'])) : "2";
-    $customer_privacy = (isset($_POST['customer_privacy']) && $_POST['customer_privacy'] != "") ? $db->escapeString($fn->xss_clean($_POST['customer_privacy'])) : "0";
-    $view_order_otp = (isset($_POST['view_order_otp']) && $_POST['view_order_otp'] != "") ? $db->escapeString($fn->xss_clean($_POST['view_order_otp'])) : "0";
-    $assign_delivery_boy = (isset($_POST['assign_delivery_boy']) && $_POST['assign_delivery_boy'] != "") ? $db->escapeString($fn->xss_clean($_POST['assign_delivery_boy'])) : "0";
-    $store_url = (isset($_POST['store_url']) && $_POST['store_url'] != "") ? $db->escapeString($fn->xss_clean($_POST['store_url'])) : "";
-    $street = (isset($_POST['street']) && $_POST['street'] != "") ? $db->escapeString($fn->xss_clean($_POST['street'])) : "";
-    $pincode_id = (isset($_POST['pincode_id']) && $_POST['pincode_id'] != "") ? $db->escapeString($fn->xss_clean($_POST['pincode_id'])) : "0";
-    $city_id = (isset($_POST['city_id']) && $_POST['city_id'] != "") ? $db->escapeString($fn->xss_clean($_POST['city_id'])) : "0";
-    $state = (isset($_POST['state']) && $_POST['state'] != "") ? $db->escapeString($fn->xss_clean($_POST['state'])) : "";
-    $account_number = (isset($_POST['account_number']) && $_POST['account_number'] != "") ? $db->escapeString($fn->xss_clean($_POST['account_number'])) : "";
-    $bank_ifsc_code = (isset($_POST['ifsc_code']) && $_POST['ifsc_code'] != "") ? $db->escapeString($fn->xss_clean($_POST['ifsc_code'])) : "";
-    $account_name = (isset($_POST['account_name']) && $_POST['account_name'] != "") ? $db->escapeString($fn->xss_clean($_POST['account_name'])) : "";
-    $bank_name = (isset($_POST['bank_name']) && $_POST['bank_name'] != "") ? $db->escapeString($fn->xss_clean($_POST['bank_name'])) : "";
-    $latitude = (isset($_POST['latitude']) && $_POST['latitude'] != "") ? $db->escapeString($fn->xss_clean($_POST['latitude'])) : "0";
-    $longitude = (isset($_POST['longitude']) && $_POST['longitude'] != "") ? $db->escapeString($fn->xss_clean($_POST['longitude'])) : "0";
-
-
-    $require_products_approval = (isset($_POST['require_products_approval']) && $_POST['require_products_approval'] != "") ? $db->escapeString($fn->xss_clean($_POST['require_products_approval'])) : 0;
-    $cat_id = (isset($_POST['cat_ids'])) ? $fn->xss_clean_array($_POST['cat_ids']) : "";
-    $cat_ids = "";
-    // if (!empty($cat_id)) {
-    //     $cat_ids = implode(",", $cat_id);
-    //     $cat_ids = $db->escapeString($cat_ids);
+    // $store_name = $db->escapeString($fn->xss_clean($_POST['store_name']));
+    // $slug = $function->slugify($db->escapeString($fn->xss_clean($_POST['store_name'])), 'seller');
+    // $mobile = $db->escapeString($fn->xss_clean($_POST['mobile']));
+    // $email = $db->escapeString($fn->xss_clean($_POST['email']));
+    // $tax_name = $db->escapeString($fn->xss_clean($_POST['tax_name']));
+    // $tax_number = $db->escapeString($fn->xss_clean($_POST['tax_number']));
+    // $pan_number = $db->escapeString($fn->xss_clean($_POST['pan_number']));
+    // $commission = $db->escapeString($fn->xss_clean($_POST['commission']));
+    // $store_description = (isset($_POST['hide_description']) && ($_POST['hide_description'] != "")) ? $db->escapeString($fn->xss_clean($_POST['hide_description'])) : "";
+    // if (strpos($name, "'") !== false) {
+    //     $name = str_replace("'", "''", "$name");
+    //     if (strpos($store_description, "'") !== false)
+    //         $store_description = str_replace("'", "''", "$store_description");
     // }
+    // $status = (isset($_POST['status']) && $_POST['status'] != "") ? $db->escapeString($fn->xss_clean($_POST['status'])) : "2";
+    // $customer_privacy = (isset($_POST['customer_privacy']) && $_POST['customer_privacy'] != "") ? $db->escapeString($fn->xss_clean($_POST['customer_privacy'])) : "0";
+    // $view_order_otp = (isset($_POST['view_order_otp']) && $_POST['view_order_otp'] != "") ? $db->escapeString($fn->xss_clean($_POST['view_order_otp'])) : "0";
+    // $assign_delivery_boy = (isset($_POST['assign_delivery_boy']) && $_POST['assign_delivery_boy'] != "") ? $db->escapeString($fn->xss_clean($_POST['assign_delivery_boy'])) : "0";
+    // $store_url = (isset($_POST['store_url']) && $_POST['store_url'] != "") ? $db->escapeString($fn->xss_clean($_POST['store_url'])) : "";
+    // $street = (isset($_POST['street']) && $_POST['street'] != "") ? $db->escapeString($fn->xss_clean($_POST['street'])) : "";
+    // $pincode_id = (isset($_POST['pincode_id']) && $_POST['pincode_id'] != "") ? $db->escapeString($fn->xss_clean($_POST['pincode_id'])) : "0";
+    // $city_id = (isset($_POST['city_id']) && $_POST['city_id'] != "") ? $db->escapeString($fn->xss_clean($_POST['city_id'])) : "0";
+    // $state = (isset($_POST['state']) && $_POST['state'] != "") ? $db->escapeString($fn->xss_clean($_POST['state'])) : "";
+    // $account_number = (isset($_POST['account_number']) && $_POST['account_number'] != "") ? $db->escapeString($fn->xss_clean($_POST['account_number'])) : "";
+    // $bank_ifsc_code = (isset($_POST['ifsc_code']) && $_POST['ifsc_code'] != "") ? $db->escapeString($fn->xss_clean($_POST['ifsc_code'])) : "";
+    // $account_name = (isset($_POST['account_name']) && $_POST['account_name'] != "") ? $db->escapeString($fn->xss_clean($_POST['account_name'])) : "";
+    // $bank_name = (isset($_POST['bank_name']) && $_POST['bank_name'] != "") ? $db->escapeString($fn->xss_clean($_POST['bank_name'])) : "";
+    // $latitude = (isset($_POST['latitude']) && $_POST['latitude'] != "") ? $db->escapeString($fn->xss_clean($_POST['latitude'])) : "0";
+    // $longitude = (isset($_POST['longitude']) && $_POST['longitude'] != "") ? $db->escapeString($fn->xss_clean($_POST['longitude'])) : "0";
 
-    $password = !empty($_POST['password']) ? $db->escapeString($fn->xss_clean($_POST['password'])) : '';
-    $password = !empty($password) ? md5($password) : '';
 
-    if ($_FILES['store_logo']['size'] != 0 && $_FILES['store_logo']['error'] == 0 && !empty($_FILES['store_logo'])) {
-        //image isn't empty and update the image
-        $old_logo = $db->escapeString($fn->xss_clean($_POST['old_logo']));
-        $extension = pathinfo($_FILES["store_logo"]["name"])['extension'];
+    // $require_products_approval = (isset($_POST['require_products_approval']) && $_POST['require_products_approval'] != "") ? $db->escapeString($fn->xss_clean($_POST['require_products_approval'])) : 0;
+    // $cat_id = (isset($_POST['cat_ids'])) ? $fn->xss_clean_array($_POST['cat_ids']) : "";
+    // $cat_ids = "";
+    // // if (!empty($cat_id)) {
+    // //     $cat_ids = implode(",", $cat_id);
+    // //     $cat_ids = $db->escapeString($cat_ids);
+    // // }
 
-        $result = $fn->validate_image($_FILES["store_logo"]);
-        if (!$result) {
-            echo " <span class='label label-danger'>Logo image type must jpg, jpeg, gif, or png!</span>";
-            return false;
-            exit();
-        }
-        $target_path = '../upload/seller/';
-        $filename = microtime(true) . '.' . strtolower($extension);
-        $full_path = $target_path . "" . $filename;
-        if (!move_uploaded_file($_FILES["store_logo"]["tmp_name"], $full_path)) {
-            echo '<p class="alert alert-danger">Can not upload image.</p>';
-            return false;
-            exit();
-        }
-        if (!empty($old_logo)) {
-            unlink($target_path . $old_logo);
-        }
-        $sql = "UPDATE seller SET `logo`='" . $filename . "' WHERE `id`=" . $id;
-        $db->sql($sql);
-    }
+    // $password = !empty($_POST['password']) ? $db->escapeString($fn->xss_clean($_POST['password'])) : '';
+    // $password = !empty($password) ? md5($password) : '';
+
+    // if ($_FILES['store_logo']['size'] != 0 && $_FILES['store_logo']['error'] == 0 && !empty($_FILES['store_logo'])) {
+    //     //image isn't empty and update the image
+    //     $old_logo = $db->escapeString($fn->xss_clean($_POST['old_logo']));
+    //     $extension = pathinfo($_FILES["store_logo"]["name"])['extension'];
+
+    //     $result = $fn->validate_image($_FILES["store_logo"]);
+    //     if (!$result) {
+    //         echo " <span class='label label-danger'>Logo image type must jpg, jpeg, gif, or png!</span>";
+    //         return false;
+    //         exit();
+    //     }
+    //     $target_path = '../upload/seller/';
+    //     $filename = microtime(true) . '.' . strtolower($extension);
+    //     $full_path = $target_path . "" . $filename;
+    //     if (!move_uploaded_file($_FILES["store_logo"]["tmp_name"], $full_path)) {
+    //         echo '<p class="alert alert-danger">Can not upload image.</p>';
+    //         return false;
+    //         exit();
+    //     }
+    //     if (!empty($old_logo)) {
+    //         unlink($target_path . $old_logo);
+    //     }
+    //     $sql = "UPDATE seller SET `logo`='" . $filename . "' WHERE `id`=" . $id;
+    //     $db->sql($sql);
+    // }
     // if ($_FILES['national_id_card']['size'] != 0 && $_FILES['national_id_card']['error'] == 0 && !empty($_FILES['national_id_card'])) {
     //     //image isn't empty and update the image
     //     $old_national_identity_card = $db->escapeString($fn->xss_clean($_POST['old_national_identity_card']));
@@ -2443,12 +2442,7 @@ if (isset($_POST['update_seller'])  && !empty($_POST['update_seller'])) {
     //     $sql = "UPDATE seller SET `address_proof`='" . $address_proof . "' WHERE `id`=" . $id;
     //     $db->sql($sql);
     // }
-
-    if (!empty($password)) {
-        $sql_ = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`password`='$password',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval' ,`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
-    } else {
-        $sql = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval',`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
-    }
+    $sql = "UPDATE `seller` SET `name`='$name' WHERE id=" . $id;
     if ($db->sql($sql)) {
         echo "<label class='alert alert-success'>Information Updated Successfully.</label>";
     } else {
