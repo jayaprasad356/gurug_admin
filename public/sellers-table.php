@@ -45,25 +45,25 @@ if ($permissions['sellers']['read'] == 1) {
                                     <th data-field="store_name" data-sortable="true">Store Name</th>
                                     <th data-field="email" data-sortable="true">Email</th>
                                     <th data-field="mobile">Mobile</th>
-                                    <th data-field="balance" data-sortable="true">Balance</th>
+                                    <!-- <th data-field="balance" data-sortable="true">Balance</th> -->
                                     <th data-field="store_url" data-sortable="true" data-visible="false">Store URL</th>
                                     <th data-field="logo" data-sortable="true">Logo</th>
-                                    <th data-field="address_proof" data-sortable="true" data-visible="false">Address Proof</th>
+                                    <!-- <th data-field="address_proof" data-sortable="true" data-visible="false">Address Proof</th>
                                     <th data-field="national_identity_card" data-sortable="true" data-visible="false">National Identity Card</th>
-                                    <th data-field="store_description" data-sortable="true" data-visible="false">Description</th>
+                                    <th data-field="store_description" data-sortable="true" data-visible="false">Description</th> -->
                                     <th data-field="street" data-sortable="true" data-visible="false">Street</th>
                                     <th data-field="pincode_id" data-sortable="true" data-visible="false">Pincode Id</th>
                                     <th data-field="city_id" data-sortable="true" data-visible="false">City Id</th>
                                     <th data-field="state" data-sortable="true" data-visible="false">State</th>
-                                    <th data-field="account_number" data-sortable="true" data-visible="false">Account Number</th>
+                                    <!-- <th data-field="account_number" data-sortable="true" data-visible="false">Account Number</th>
                                     <th data-field="bank_ifsc_code" data-sortable="true" data-visible="false">Bank IFSC Code</th>
                                     <th data-field="account_name" data-sortable="true" data-visible="false">Account Name</th>
                                     <th data-field="bank_name" data-sortable="true" data-visible="false">Bank Name</th>
                                     <th data-field="commission" data-sortable="true">Commi.(%)</th>
                                     <th data-field="categories" data-sortable="true">Categories</th>
-                                    <th data-field="edit_commission" data-sortable="true">Cat. wise comm.</th>
+                                    <th data-field="edit_commission" data-sortable="true">Cat. wise comm.</th> -->
                                     <th data-field="status" data-sortable="true">Status</th>
-                                    <th data-field="require_products_approval" data-sortable="true">Pr. Approval?</th>
+                                    <!-- <th data-field="require_products_approval" data-sortable="true">Pr. Approval?</th> -->
                                     <th data-field="operate" data-events="actionEvents">Action</th>
                                 </tr>
                             </thead>

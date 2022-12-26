@@ -2094,23 +2094,23 @@ if (isset($_GET['table']) && $_GET['table'] == 'seller') {
             $tempRow['mobile'] = $row['mobile'];
         }
 
-        $tempRow['balance'] = ceil($row['balance']);
+        // $tempRow['balance'] = ceil($row['balance']);
         $tempRow['store_url'] = $row['store_url'];
         $tempRow['logo'] = "<a data-lightbox='product' href='" . DOMAIN_URL . $path . $row['logo'] . "'><img src='" . DOMAIN_URL . $path . $row['logo'] . "' height='50' /></a>";
-        $tempRow['address_proof'] = "<a data-lightbox='product' href='" . DOMAIN_URL . $path . $row['address_proof'] . "'><img src='" . DOMAIN_URL . $path . $row['address_proof'] . "' height='50' /></a>";
-        $tempRow['national_identity_card'] = "<a data-lightbox='product' href='" . DOMAIN_URL . $path . $row['national_identity_card'] . "'><img src='" . DOMAIN_URL . $path . $row['national_identity_card'] . "' height='50' /></a>";
+        // $tempRow['address_proof'] = "<a data-lightbox='product' href='" . DOMAIN_URL . $path . $row['address_proof'] . "'><img src='" . DOMAIN_URL . $path . $row['address_proof'] . "' height='50' /></a>";
+        // $tempRow['national_identity_card'] = "<a data-lightbox='product' href='" . DOMAIN_URL . $path . $row['national_identity_card'] . "'><img src='" . DOMAIN_URL . $path . $row['national_identity_card'] . "' height='50' /></a>";
         $tempRow['store_description'] = $row['store_description'];
         $tempRow['street'] = $row['street'];
         $tempRow['pincode_id'] = $row['pincode_id'];
         $tempRow['city_id'] = $row['city_id'];
         $tempRow['state'] = $row['state'];
-        $tempRow['categories'] = $row['categories'];
-        $tempRow['account_number'] = $row['account_number'];
-        $tempRow['bank_ifsc_code'] = $row['bank_ifsc_code'];
-        $tempRow['bank_name'] = $row['bank_name'];
-        $tempRow['account_name'] = $row['account_name'];
-        $tempRow['require_products_approval'] = ($row['require_products_approval'] == 1) ? "<span class='label label-primary'>Yes</span>" : "<span class='label label-info'>No</span>";
-        $tempRow['commission'] = (!empty($row['commission'])) ? $row['commission'] : "";
+        // $tempRow['categories'] = $row['categories'];
+        // $tempRow['account_number'] = $row['account_number'];
+        // $tempRow['bank_ifsc_code'] = $row['bank_ifsc_code'];
+        // $tempRow['bank_name'] = $row['bank_name'];
+        // $tempRow['account_name'] = $row['account_name'];
+        // $tempRow['require_products_approval'] = ($row['require_products_approval'] == 1) ? "<span class='label label-primary'>Yes</span>" : "<span class='label label-info'>No</span>";
+        // $tempRow['commission'] = (!empty($row['commission'])) ? $row['commission'] : "";
         if ($row['status'] == 2)
             $tempRow['status'] = "<label class='label label-warning'>Not-Approved</label>";
         else if ($row['status'] == 1)
@@ -2120,7 +2120,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'seller') {
         else if ($row['status'] == 7)
             $tempRow['status'] = "<label class='label label-danger'>Removed</label>";
         $tempRow['operate'] = $operate;
-        $tempRow['edit_commission'] = $operate = "<a class='btn btn-xs btn-primary category-wise-commission' data-id='" . $row['id'] . "' data-toggle='modal' data-target='#category-wise-commission-modal' title='Category wise seller commission'><i class='fa fa-pencil-square-o'></i></a>";
+        // $tempRow['edit_commission'] = $operate = "<a class='btn btn-xs btn-primary category-wise-commission' data-id='" . $row['id'] . "' data-toggle='modal' data-target='#category-wise-commission-modal' title='Category wise seller commission'><i class='fa fa-pencil-square-o'></i></a>";
         $rows[] = $tempRow;
     }
     $bulkData['rows'] = $rows;

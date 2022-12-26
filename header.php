@@ -256,7 +256,7 @@ $res_logo = $db->getResult();
                         <!-- <li><a href="products-order.php"><i class="fa fa-reorder"></i> Products Order</a></li> -->
                     </ul>
                 </li>
-                <!-- <li class="treeview">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-male"></i>
                         <span>Sellers</span>
@@ -272,11 +272,11 @@ $res_logo = $db->getResult();
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="sellers.php"><i class="fa fa-sliders"></i> Manage Sellers</a></li>
-                        <li><a href="seller-transactions.php"><i class="fa fa-exchange"></i> Transactions</a></li>
-                        <li><a href="seller-wallet-transactions.php"><i class="fa fa-credit-card"></i> Manage Wallet Transactions</a></li>
+                        <!-- <li><a href="seller-transactions.php"><i class="fa fa-exchange"></i> Transactions</a></li>
+                        <li><a href="seller-wallet-transactions.php"><i class="fa fa-credit-card"></i> Manage Wallet Transactions</a></li> -->
 
                     </ul>
-                </li> -->
+                </li>
                 <li class="treeview">
                     <a href="main-slider.php">
                         <i class="fa fa-picture-o"></i>
