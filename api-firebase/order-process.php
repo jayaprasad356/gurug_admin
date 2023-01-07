@@ -35,26 +35,26 @@ $order_cancelled =  $order_item_cancelled = false;
 
 $shipping_type = ($function->get_settings('local_shipping') == 1) ? 'local' : 'standard';
 
-if (isset($_POST['ajaxCall']) && !empty($_POST['ajaxCall'])) {
-    $accesskey = "90336";
-    $cancel_order_from = "admin";
-} else {
-    if (isset($_POST['accesskey']) && !empty($_POST['accesskey'])) {
-        $accesskey = $db->escapeString($function->xss_clean($_POST['accesskey']));
-    } else {
-        $response['error'] = true;
-        $response['message'] = "accesskey required";
-        print_r(json_encode($response));
-        return false;
-    }
-}
+// if (isset($_POST['ajaxCall']) && !empty($_POST['ajaxCall'])) {
+//     $accesskey = "90336";
+//     $cancel_order_from = "admin";
+// } else {
+//     if (isset($_POST['accesskey']) && !empty($_POST['accesskey'])) {
+//         $accesskey = $db->escapeString($function->xss_clean($_POST['accesskey']));
+//     } else {
+//         $response['error'] = true;
+//         $response['message'] = "accesskey required";
+//         print_r(json_encode($response));
+//         return false;
+//     }
+// }
 
-if ($access_key != $accesskey) {
-    $response['error'] = true;
-    $response['message'] = "invalid accesskey";
-    print_r(json_encode($response));
-    return false;
-}
+// if ($access_key != $accesskey) {
+//     $response['error'] = true;
+//     $response['message'] = "invalid accesskey";
+//     print_r(json_encode($response));
+//     return false;
+// }
 /* 
   i. place_order
         accesskey:90336
@@ -657,15 +657,13 @@ if (isset($_POST['update_order_status']) && isset($_POST['order_item_id']) && is
                 array_push($temp, $s[0]);
             }
             if ($postStatus == 'cancelled') {
-                if ($order_item_cancelled == true) {
-                    if (!in_array('cancelled', $temp)) {
-                        $status[] = array('cancelled', date("d-m-Y h:i:sa"));
-                        $data = array(
-                            'status' =>  $db->escapeString(json_encode($status)),
-                        );
-                    }
-                    $db->update('order_items', $data, 'id=' . $order_item_id);
+                if (!in_array('cancelled', $temp)) {
+                    $status[] = array('cancelled', date("d-m-Y h:i:sa"));
+                    $data = array(
+                        'status' =>  $db->escapeString(json_encode($status)),
+                    );
                 }
+                $db->update('order_items', $data, 'id=' . $order_item_id);
             }
 
 
@@ -789,10 +787,13 @@ if (isset($_POST['update_order_status']) && isset($_POST['order_item_id']) && is
             $final_status = array(
                 'active_status' => $currentStatus
             );
+            $response['currentStatus'] = $status;
             if ($db->update('order_items', $final_status, 'id=' . $order_item_id)) {
                 $response['error'] = false;
+                $resc['error'] = false;
                 if ($postStatus == 'cancelled') {
                     $response['message'] = "Order has been cancelled!";
+                    $resc['message'] = "Order has been cancelled!";
                 } elseif ($postStatus == 'returned') {
                     $response['message'] = "Order item returned request received successfully! Please wait for approval.";
                 } else {
@@ -813,8 +814,14 @@ if (isset($_POST['update_order_status']) && isset($_POST['order_item_id']) && is
                     // need to send notification to seller for update order
                 }
                 $res = $db->getResult();
+                if($postStatus == 'cancelled'){
+                    print_r(json_encode($resc));
 
-                print_r(json_encode($response));
+                }else{
+                    print_r(json_encode($response));
+                }
+
+                
             } else {
                 $response['error'] = true;
                 $response['message'] = isset($_POST['delivery_boy_id']) && $_POST['delivery_boy_id'] != '' ? 'Delivery Boy updated, But could not update order status try again!' : 'Could not update order status try again!';
