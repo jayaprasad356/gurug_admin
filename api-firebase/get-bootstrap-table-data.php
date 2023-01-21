@@ -870,6 +870,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'slider') {
         $tempRow['id'] = $row['id'];
         $tempRow['type'] = $row['type'];
         $tempRow['type_id'] = $row['type_id'];
+        $tempRow['subcategory_id'] = $row['subcategory_id'];
         $tempRow['slider_url'] = $row['slider_url'];
         $tempRow['image'] = (!empty($row['image'])) ? "<a data-lightbox='slider' href='" . $row['image'] . "'><img src='" . $row['image'] . "' width='40'/></a>" : "No Image";
         $tempRow['operate'] = $operate;

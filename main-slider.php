@@ -200,6 +200,12 @@ $allowed = ALLOW_MODIFICATION; ?>
                                         <?php } ?>
                                     </select>
                                 </div>
+                                <div class="form-group" id="sub_categories" style="display:none;">
+                                    <label for="sub_category">Subcategories :</label>
+                                    <select name="subcategory_id" id="subcategory_id" class="form-control">
+                                        <option value="">--Select Sub Category--</option>
+                                    </select>
+                                </div>
 
 
                                 <div class="form-group" id="products" style="display:none;">
@@ -253,6 +259,7 @@ $allowed = ALLOW_MODIFICATION; ?>
                                         <th data-field="type">Type</th>
                                         <th data-field="slider_url">Url</th>
                                         <th data-field="type_id">ID</th>
+                                        <th data-field="subcategory_id">Subcategory Id</th>
                                         <th data-field="operate">Action</th>
                                     </tr>
                                 </thead>
@@ -281,21 +288,25 @@ $allowed = ALLOW_MODIFICATION; ?>
                 $("#categories").hide();
                 $("#products").hide();
                 $("#link_1").hide();
+                $("#sub_categories").hide();
             }
             if (type == "category") {
                 $("#categories").show();
                 $("#products").hide();
                 $("#link_1").hide();
+                $("#sub_categories").show();
             }
             if (type == "product") {
                 $("#categories").hide();
                 $("#products").show();
                 $("#link_1").hide();
+                $("#sub_categories").hide();
             }
             if (type == "slider_url") {
                 $("#categories").hide();
                 $("#products").hide();
                 $("#link_1").show();
+                $("#sub_categories").hide();
             }
         });
         $('#slider_form').on('submit', function(e) {
@@ -353,6 +364,18 @@ $allowed = ALLOW_MODIFICATION; ?>
                 });
             }
         });
+    </script>
+    <script>
+    $(document).on('change', '#category', function() {
+        $.ajax({
+            url: "public/db-operation.php",
+            data: "category_slide=" + $('#category').val() + "&change_category_slide=1",
+            method: "POST",
+            success: function(data) {
+                $('#subcategory_id').html("<option value=''>---Select Subcategory---</option>" + data);
+            }
+        });
+    });
     </script>
 </body>
 

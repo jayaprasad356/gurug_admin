@@ -23,27 +23,27 @@ $db = new Database();
 $db->connect();
 $response = array();
 
-if (!isset($_POST['accesskey'])) {
-    if (!isset($_GET['accesskey'])) {
-        $response['error'] = true;
-        $response['message'] = "Access key is invalid or not passed!";
-        print_r(json_encode($response));
-        return false;
-    }
-}
+// if (!isset($_POST['accesskey'])) {
+//     if (!isset($_GET['accesskey'])) {
+//         $response['error'] = true;
+//         $response['message'] = "Access key is invalid or not passed!";
+//         print_r(json_encode($response));
+//         return false;
+//     }
+// }
 
-if (isset($_POST['accesskey'])) {
-    $accesskey = $db->escapeString($fn->xss_clean($_POST['accesskey']));
-} else {
-    $accesskey = $db->escapeString($fn->xss_clean($_GET['accesskey']));
-}
+// if (isset($_POST['accesskey'])) {
+//     $accesskey = $db->escapeString($fn->xss_clean($_POST['accesskey']));
+// } else {
+//     $accesskey = $db->escapeString($fn->xss_clean($_GET['accesskey']));
+// }
 
-if ($access_key != $accesskey) {
-    $response['error'] = true;
-    $response['message'] = "invalid accesskey!";
-    print_r(json_encode($response));
-    return false;
-}
+// if ($access_key != $accesskey) {
+//     $response['error'] = true;
+//     $response['message'] = "invalid accesskey!";
+//     print_r(json_encode($response));
+//     return false;
+// }
 
 if ((isset($_POST['add-image'])) && ($_POST['add-image'] == 1)) {
     if (defined('ALLOW_MODIFICATION') && ALLOW_MODIFICATION == 0) {
@@ -62,6 +62,7 @@ if ((isset($_POST['add-image'])) && ($_POST['add-image'] == 1)) {
     $type = $db->escapeString($fn->xss_clean($_POST['type']));
     $slider_url = $db->escapeString($fn->xss_clean($_POST['slider_url']));
     $id = ($type != 'default') && ($type != 'slider_url')  ? $db->escapeString($fn->xss_clean($_POST[$type])) : "0";
+    $subcategory_id=$db->escapeString($fn->xss_clean($_POST['subcategory_id']));
 
     // create array variable to handle error
     $error = array();
@@ -94,7 +95,7 @@ if ((isset($_POST['add-image'])) && ($_POST['add-image'] == 1)) {
 
         // insert new data to menu table
         $upload_image = 'upload/slider/' . $image;
-        $sql = "INSERT INTO `slider`(`image`,`type`, `type_id`,`slider_url`) VALUES ('$upload_image','" . $type . "','" . $id . "','" . $slider_url . "')";
+        $sql = "INSERT INTO `slider`(`image`,`type`, `type_id`,`subcategory_id`,`slider_url`) VALUES ('$upload_image','" . $type . "','" . $id . "','" . $subcategory_id . "','" . $slider_url . "')";
         $db->sql($sql);
         $res = $db->getResult();
         $sql = "SELECT id FROM `slider` ORDER BY id DESC";
@@ -148,6 +149,10 @@ if (isset($_POST['get-slider-images'])) {
                 $db->sql($sql);
                 $result1 = $db->getResult();
                 $name = (!empty($result1[0]['name'])) ? $result1[0]['name'] : "";
+                $sql = 'select `name` from subcategory where id = ' . $row['subcategory_id'] . ' order by id desc';
+                $db->sql($sql);
+                $result2 = $db->getResult();
+                $subcategory_name = (!empty($result2[0]['name'])) ? $result2[0]['name'] : "";
                 $slug = $function->slugify($db->escapeString($fn->xss_clean($name)));
             }
             if ($row['type'] == 'product') {
@@ -160,7 +165,9 @@ if (isset($_POST['get-slider-images'])) {
 
             $temp['type'] = $row['type'];
             $temp['type_id'] = $row['type_id'];
+            $temp['subcategory_id'] = $row['subcategory_id'];
             $temp['name'] = $name;
+            $temp['subcategory_name'] = $subcategory_name;
             $temp['slug'] = $row['type_id'] == 0 ? "" : $slug;
             $temp['slider_url'] = !empty($row['slider_url']) ? $row['slider_url'] : "";
             $temp['image'] = DOMAIN_URL . $row['image'];

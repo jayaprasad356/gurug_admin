@@ -3178,3 +3178,31 @@ if (isset($_POST['location_bulk_uploads']) && $_POST['location_bulk_uploads'] ==
         echo "<p class='alert alert-danger'>Invalid file format! Please upload data in CSV file!</p><br>";
     }
 }
+
+
+//get subcategories by category
+
+
+if (isset($_POST['change_category_slide'])) {
+    if ($permissions['subcategories']['read'] == 1) {
+        if ($_POST['category'] == '') {
+            $sql = "SELECT * FROM subcategory";
+        } else {
+            $category = $db->escapeString($fn->xss_clean($_POST['category_slide']));
+            $sql = "SELECT * FROM subcategory WHERE category_id=" . $category_id;
+        }
+    } else {
+        echo "<option value=''>--Select Subcategory--</option>";
+        return false;
+    }
+
+    $db->sql($sql);
+    $res = $db->getResult();
+    if (!empty($res)) {
+        foreach ($res as $row) {
+            echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+        }
+    } else {
+        echo "<option value=''>--No Sub Category is added--</option>";
+    }
+}

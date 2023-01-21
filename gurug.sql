@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2022 at 10:33 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Jan 21, 2023 at 06:58 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -95,6 +95,13 @@ CREATE TABLE `category` (
   `product_rating` tinyint(2) NOT NULL DEFAULT 0,
   `web_image` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `row_order`, `name`, `slug`, `subtitle`, `image`, `status`, `product_rating`, `web_image`) VALUES
+(1, 0, 'hello', NULL, '', '', NULL, 0, '');
 
 -- --------------------------------------------------------
 
@@ -761,10 +768,19 @@ CREATE TABLE `slider` (
   `id` int(11) NOT NULL,
   `type` varchar(16) NOT NULL,
   `type_id` varchar(16) NOT NULL,
+  `subcategory_id` varchar(16) NOT NULL,
   `image` varchar(256) NOT NULL,
   `slider_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_added` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `slider`
+--
+
+INSERT INTO `slider` (`id`, `type`, `type_id`, `subcategory_id`, `image`, `slider_url`, `date_added`) VALUES
+(5, 'category', '1', '2', 'upload/slider/1674115373284.jpg', '', '2023-01-19 08:02:53'),
+(6, 'product', '', '', 'upload/slider/1674115643985.jpg', '', '2023-01-19 08:07:23');
 
 -- --------------------------------------------------------
 
@@ -793,6 +809,13 @@ CREATE TABLE `subcategory` (
   `subtitle` text NOT NULL,
   `image` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `subcategory`
+--
+
+INSERT INTO `subcategory` (`id`, `row_order`, `category_id`, `name`, `slug`, `subtitle`, `image`) VALUES
+(2, 0, 1, 'dgjhjjs', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1315,7 +1338,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -1507,7 +1530,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `social_media`
@@ -1519,7 +1542,7 @@ ALTER TABLE `social_media`
 -- AUTO_INCREMENT for table `subcategory`
 --
 ALTER TABLE `subcategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `taxes`
